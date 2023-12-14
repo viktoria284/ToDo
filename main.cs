@@ -16,7 +16,7 @@ using data_base;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
  using System.Windows.Forms;
 
- 
+
 
 
 namespace ToDo
@@ -38,6 +38,7 @@ namespace ToDo
         int onec = 0;
         DataBase database = new DataBase();
         int selectedRow; int selectedRow2;
+        int Id_done;
         string Id_subs;
         public main()
         {
@@ -87,7 +88,7 @@ namespace ToDo
 
             bool isNew = true;
 
-            dvg.Rows.Add(id_subject, subject_name  ,type_subject, teachers, requirements, notes);
+            dvg.Rows.Add(id_subject, subject_name, type_subject, teachers, requirements, notes);
 
 
 
@@ -107,7 +108,40 @@ namespace ToDo
 
 
             dvg.Rows.Add(id_task, task, subject_name, task_desc, deadline, isdone, RoWState.ModifiedNew.ToString());
-
+              if (isdone == true)
+            {
+                foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
+                {
+                    cell.Style.BackColor = Color.SpringGreen;
+                }
+            }
+            
+            else if (deadline < dateTimePicker2.Value      /*  dateTimePicker1.Value*/)
+            {
+                // Если срок годности истек, устанавливаем цвет фона строки на красный.
+                foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
+                {
+                    cell.Style.BackColor = Color.IndianRed;
+                }
+            }
+             
+            else if (deadline < dateTimePicker2.Value & isdone == true  /* dateTimePicker1.Value.AddDays(1)*/)
+            {
+                // Если срок годности истекает через день, устанавливаем цвет фона строки на желтый.
+                foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
+                {
+                    cell.Style.BackColor = Color.Green;
+                }
+            }
+            else if (deadline == dateTimePicker2.Value  /* dateTimePicker1.Value.AddDays(1)*/)
+            {
+                // Если срок годности истекает через день, устанавливаем цвет фона строки на желтый.
+                foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
+                {
+                    cell.Style.BackColor = Color.Yellow;
+                }
+            }
+             
 
 
 
@@ -118,14 +152,14 @@ namespace ToDo
         private void RefreshDataGrid(DataGridView dvg)
         {
 
-            
-              
-             
-             
-             dvg.Rows.Clear();
+
+
+
+
+            dvg.Rows.Clear();
             string queryString;
             string selectedValue = comboBox1.SelectedValue.ToString();
-            if(selectedValue == "qwe" || selectedValue == null)
+            if (selectedValue == "ALL" || selectedValue == null)
 
             {
                 queryString = $"select * from subjects  ";
@@ -156,9 +190,9 @@ namespace ToDo
         {
 
             dvg.Rows.Clear();
-             
+
             string queryString = $"select * from tasks where subject_name = '{Id_subs}'";
- 
+
             SqlCommand command = new SqlCommand(queryString, database.getConnection());
 
             database.openConnection();
@@ -180,19 +214,37 @@ namespace ToDo
             selectedRow = e.RowIndex;
 
 
-             
+
 
             if (selectedRow >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
 
-                // Получите id из выделенной строки и передайте его в метод showPicture
-                  Id_subs = (string)row.Cells[1].Value;
-             }
+
+                Id_subs = (string)row.Cells[1].Value;
+            }
             RefreshDataGrid2(dataGridView2);
         }
 
-        
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedRow2 = e.RowIndex;
+
+
+
+
+            if (selectedRow >= 0)
+            {
+                DataGridViewRow row = dataGridView2.Rows[selectedRow2];
+
+                Id_done = Convert.ToInt32(row.Cells[0].Value);
+
+                // Получите id из выделенной строки и передайте его в метод showPicture
+            }
+
+
+
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -245,12 +297,14 @@ namespace ToDo
         private void button1_Click(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridView1);
-             RefreshDataGrid2(dataGridView2);
+            RefreshDataGrid2(dataGridView2);
         }
         public ComboBox MyComboBox
         {
-            get { return comboBox1; 
-             }
+            get
+            {
+                return comboBox1;
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -278,7 +332,7 @@ namespace ToDo
         {
 
         }
-          
+
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -296,10 +350,10 @@ namespace ToDo
 
         }
 
-         
-        
 
-         
+
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -313,9 +367,23 @@ namespace ToDo
             combo.boxes = comboBox1;
             add ADS = new add();
             ADS.ShowDialog();
-             
-        }
 
+        }
+        private void deleteRow()
+        {
+            int index = dataGridView1.CurrentCell.RowIndex;
+
+            dataGridView1.Rows[index].Visible = false;
+
+            if (dataGridView1.Rows[index].Cells[0].ToString() == string.Empty)
+            {
+                dataGridView1.Rows[index].Cells[6].Value = RoWState.Deleted;
+                return;
+
+            }
+            dataGridView1.Rows[index].Cells[6].Value = RoWState.Deleted;
+
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             string selectedValue = comboBox1.SelectedValue.ToString();
@@ -359,13 +427,13 @@ namespace ToDo
 
 
 
-            var changequery = $"update task set isdone ='{true}' where id = '{selectedRow2}' ";
+            var changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
             database.openConnection();
             var command = new SqlCommand(changequery, database.getConnection());
-           
-            
-                
-         
+
+
+
+
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -402,21 +470,43 @@ namespace ToDo
 
         }
 
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedRow2 = e.RowIndex;
+            database.getConnection();
+            
+                var id = Convert.ToInt32(dataGridView1.Rows[selectedRow].Cells[0].Value);
+
+            var DeleteQuery = $"delete from subjects where  subject_name = '{Id_subs}' ";
 
 
+            var command = new SqlCommand(DeleteQuery, database.getConnection());
+                command.ExecuteNonQuery();
 
+                database.closeConnection();
+             
+        }
 
-            if (selectedRow >= 0)
+        private void delete_Click(object sender, EventArgs e)
+        {
+            database.getConnection();
             {
-                DataGridViewRow row = dataGridView2.Rows[selectedRow];
+                var id = Convert.ToInt32(dataGridView2.Rows[selectedRow2].Cells[0].Value);
 
-                // Получите id из выделенной строки и передайте его в метод showPicture
-                
+                var DeleteQuery = $"delete from tasks where id_task = {Id_done} ";
+
+                var command = new SqlCommand(DeleteQuery, database.getConnection());
+                command.ExecuteNonQuery();
+
+                database.closeConnection();
             }
-            RefreshDataGrid2(dataGridView2);
+        }
+
+        private void button7_Click(object sender, EventArgs e, main main)
+        {
+           this.Width = 1310;
+             
         }
     }
 }
