@@ -36,6 +36,7 @@ namespace ToDo
         private System.Timers.Timer timer;
         private DateTime startTime;
         int onec = 0;
+        string predmet;
         DataBase database = new DataBase();
         int selectedRow; int selectedRow2;
         int Id_done;
@@ -79,6 +80,7 @@ namespace ToDo
         private void ReadSingleRow(DataGridView dvg, IDataRecord record)
         {
 
+            predmet = record.GetString(1);
             int id_subject = record.GetInt32(0);
             string subject_name = record.GetString(1);
             string type_subject = record.GetString(2);
@@ -294,6 +296,12 @@ namespace ToDo
                 MessageBox.Show("Ошибка: " + ex.Message);
             }
         }
+
+        private void update()
+        {
+            RefreshDataGrid(dataGridView1);
+            RefreshDataGrid2(dataGridView2);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridView1);
@@ -347,7 +355,7 @@ namespace ToDo
         {
             Form1 frm = new Form1();
             frm.ShowDialog();
-
+            update();
         }
 
 
@@ -386,7 +394,7 @@ namespace ToDo
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            string selectedValue = comboBox1.SelectedValue.ToString();
+            string selectedValue =  comboBox1.SelectedValue.ToString();
             database.openConnection();
 
             var task = textBox1.Text;
@@ -412,7 +420,7 @@ namespace ToDo
             }
 
             database.closeConnection();
-
+            update();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -485,7 +493,7 @@ namespace ToDo
                 command.ExecuteNonQuery();
 
                 database.closeConnection();
-             
+            update();
         }
 
         private void delete_Click(object sender, EventArgs e)
@@ -501,11 +509,32 @@ namespace ToDo
 
                 database.closeConnection();
             }
+            update();
         }
 
         private void button7_Click(object sender, EventArgs e, main main)
         {
            this.Width = 1310;
+             
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+             
+        }
+        int t = 0;
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            if (t == 0)
+            {
+                this.Height = 491;
+                t = 1;
+            }
+            else
+            {
+                this.Height = 771;
+                t = 0;
+            }
              
         }
     }
