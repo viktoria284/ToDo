@@ -42,6 +42,8 @@ namespace ToDo
         int Id_done;
         string Id_subs;
         task TASK;
+
+
         public main()
         {
             InitializeComponent();
@@ -55,6 +57,8 @@ namespace ToDo
             TimeSpan elapsed = DateTime.Now - startTime;
             label1.Text = $"{elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
         }
+
+
         private void CreateColums()
         {
 
@@ -121,7 +125,7 @@ namespace ToDo
             
             else if (deadline < dateTimePicker2.Value      /*  dateTimePicker1.Value*/)
             {
-                // Если срок годности истек, устанавливаем цвет фона строки на красный.
+                
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
                 {
                     cell.Style.BackColor = Color.IndianRed;
@@ -154,10 +158,6 @@ namespace ToDo
 
         private void RefreshDataGrid(DataGridView dvg)
         {
-
-
-
-
 
             dvg.Rows.Clear();
             string queryString;
@@ -239,15 +239,14 @@ namespace ToDo
 
             if (selectedRow >= 0)
             {
-                ComboBox l = new ComboBox();
-                l.Items.AddRange(comboBox1.Items.Cast<object>().ToArray());
+                
+             
 
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
-                 TASK
-                     = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), l,row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
+                 TASK = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
                 
-               
+                
 
 
             }
@@ -261,11 +260,9 @@ namespace ToDo
             FillComboBox();
             CreateColums();
             CreateColums_2();
-            RefreshDataGrid(dataGridView1);
+           RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2); FillComboBox();
-
-            RefreshDataGrid(dataGridView1);
-            RefreshDataGrid2(dataGridView2);
+            
 
 
 
@@ -309,11 +306,11 @@ namespace ToDo
         {
             RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2);
+            FillComboBox();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            RefreshDataGrid(dataGridView1);
-            RefreshDataGrid2(dataGridView2);
+            update();
         }
          
 
@@ -332,28 +329,28 @@ namespace ToDo
         private void button4_Click(object sender, EventArgs e)
         {
             timer.Stop();
-            label1.Text = "00:00:00";
+            SaveTimerDataToFile("D:\\c#web\\ToDo\timersave.txt"); // Specify the file path
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void SaveTimerDataToFile(string filePath)
         {
+            // Get the elapsed time from the label
+            TimeSpan elapsed = TimeSpan.Parse(label1.Text);
 
+            // Format the data
+            string timerData = $"{DateTime.Now}: Elapsed Time: {elapsed}\r\n";
+
+            try
+            {
+                // Append the data to the specified file
+                File.AppendAllText(filePath, timerData);
+                MessageBox.Show("Timer data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving timer data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+       
 
         private void aDDSubToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -374,28 +371,14 @@ namespace ToDo
 
         }
  
-        private void deleteRow()
-        {
-            int index = dataGridView1.CurrentCell.RowIndex;
-
-            dataGridView1.Rows[index].Visible = false;
-
-            if (dataGridView1.Rows[index].Cells[0].ToString() == string.Empty)
-            {
-                dataGridView1.Rows[index].Cells[6].Value = RoWState.Deleted;
-                return;
-
-            }
-            dataGridView1.Rows[index].Cells[6].Value = RoWState.Deleted;
-
-        }
+       
         private void button5_Click(object sender, EventArgs e)
         {
-            string selectedValue =  comboBox1.SelectedValue.ToString();
+           // string selectedValue =  comboBox1.SelectedValue.ToString();
             database.openConnection();
 
             var task = textBox_task.Text;
-            var name = selectedValue;
+            var name = Id_subs;
             var desc = textBox_desk.Text;
             bool lw = false;
             var temess = dateTimePicker1.Value;
@@ -424,53 +407,14 @@ namespace ToDo
         {
 
 
-
-
-
-
-
-
-
-
             var changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
             database.openConnection();
             var command = new SqlCommand(changequery, database.getConnection());
-
-
-
-
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             database.closeConnection();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         }
@@ -499,7 +443,7 @@ namespace ToDo
             {
                 var id = Convert.ToInt32(dataGridView2.Rows[selectedRow2].Cells[0].Value);
 
-                var DeleteQuery = $"delete from tasks where id_task = {Id_done} ";
+                var DeleteQuery = $"delete from tasks where id_task = {id} ";
 
                 var command = new SqlCommand(DeleteQuery, database.getConnection());
                 command.ExecuteNonQuery();
@@ -509,16 +453,13 @@ namespace ToDo
             update();
         }
 
-        private void button7_Click(object sender, EventArgs e, main main)
-        {
-           this.Width = 1310;
-             
-        }
+       
 
         private void button7_Click(object sender, EventArgs e)
         {
             Form2 frm2 = new Form2(TASK);
             frm2.ShowDialog();
+            update();
 
         }
         int t = 0;

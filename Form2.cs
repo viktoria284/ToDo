@@ -73,5 +73,10 @@ namespace ToDo
             database.closeConnection();
              
         }
+
+        private void textBoxtask_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

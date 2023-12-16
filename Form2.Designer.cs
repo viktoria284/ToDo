@@ -38,23 +38,24 @@
             // 
             // textBox_id
             // 
-            this.textBox_id.Location = new System.Drawing.Point(134, 53);
+            this.textBox_id.Location = new System.Drawing.Point(12, 1);
             this.textBox_id.Name = "textBox_id";
             this.textBox_id.Size = new System.Drawing.Size(100, 23);
             this.textBox_id.TabIndex = 0;
+            this.textBox_id.Visible = false;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(99, 195);
+            this.dateTimePicker1.Location = new System.Drawing.Point(99, 167);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(192, 23);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(149, 224);
+            this.button1.Location = new System.Drawing.Point(143, 221);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(89, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,22 +63,24 @@
             // 
             // textBoxtask
             // 
-            this.textBoxtask.Location = new System.Drawing.Point(134, 82);
+            this.textBoxtask.Location = new System.Drawing.Point(99, 69);
+            this.textBoxtask.Multiline = true;
             this.textBoxtask.Name = "textBoxtask";
-            this.textBoxtask.Size = new System.Drawing.Size(100, 23);
+            this.textBoxtask.Size = new System.Drawing.Size(192, 36);
             this.textBoxtask.TabIndex = 3;
             // 
             // textBox_des
             // 
-            this.textBox_des.Location = new System.Drawing.Point(124, 124);
+            this.textBox_des.Location = new System.Drawing.Point(99, 111);
+            this.textBox_des.Multiline = true;
             this.textBox_des.Name = "textBox_des";
-            this.textBox_des.Size = new System.Drawing.Size(100, 23);
+            this.textBox_des.Size = new System.Drawing.Size(192, 40);
             this.textBox_des.TabIndex = 4;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(134, 170);
+            this.checkBox1.Location = new System.Drawing.Point(149, 196);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(83, 19);
             this.checkBox1.TabIndex = 6;
