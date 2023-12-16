@@ -41,6 +41,7 @@ namespace ToDo
         int selectedRow; int selectedRow2;
         int Id_done;
         string Id_subs;
+        task TASK;
         public main()
         {
             InitializeComponent();
@@ -235,13 +236,20 @@ namespace ToDo
 
 
 
+
             if (selectedRow >= 0)
             {
+                ComboBox l = new ComboBox();
+                l.Items.AddRange(comboBox1.Items.Cast<object>().ToArray());
+
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
-                Id_done = Convert.ToInt32(row.Cells[0].Value);
+                 TASK
+                     = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), l,row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
+                
+               
 
-                // Получите id из выделенной строки и передайте его в метод showPicture
+
             }
 
 
@@ -307,13 +315,9 @@ namespace ToDo
             RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2);
         }
-        public ComboBox MyComboBox
-        {
-            get
-            {
-                return comboBox1;
-            }
-        }
+         
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             startTime = DateTime.Now;
@@ -369,14 +373,7 @@ namespace ToDo
             RefreshDataGrid2(dataGridView2);
 
         }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            combo.boxes = comboBox1;
-            add ADS = new add();
-            ADS.ShowDialog();
-
-        }
+ 
         private void deleteRow()
         {
             int index = dataGridView1.CurrentCell.RowIndex;
@@ -397,9 +394,9 @@ namespace ToDo
             string selectedValue =  comboBox1.SelectedValue.ToString();
             database.openConnection();
 
-            var task = textBox1.Text;
+            var task = textBox_task.Text;
             var name = selectedValue;
-            var desc = textBox3.Text;
+            var desc = textBox_desk.Text;
             bool lw = false;
             var temess = dateTimePicker1.Value;
             var addQuery = "INSERT INTO tasks (task,subject_name, task_desc, deadline,isdone) " +
@@ -520,7 +517,9 @@ namespace ToDo
 
         private void button7_Click(object sender, EventArgs e)
         {
-             
+            Form2 frm2 = new Form2(TASK);
+            frm2.ShowDialog();
+
         }
         int t = 0;
         private void button6_Click_1(object sender, EventArgs e)
