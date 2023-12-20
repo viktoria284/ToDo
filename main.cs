@@ -456,7 +456,7 @@ namespace ToDo
 
         private void EditButtonClick(object sender, EventArgs e)
         {
-            Form2 frm2 = new Form2(TASK);
+            Change frm2 = new Change(TASK);
             frm2.ShowDialog();
             update();
         }
