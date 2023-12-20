@@ -17,27 +17,27 @@ namespace ToDo
     public partial class Form1 : Form
     {
         DataBase database = new DataBase();
-        main mainInstance = new main();
-       
-        
-        
-        
+        Main mainInstance = new Main();
+
+
+
+
         public Form1()
         {
             InitializeComponent();
             CenterToParent();
         }
-         
 
-         
+
+
 
         // Используйте свойство для доступа к элементу
-         
+
         private void button1_Click(object sender, EventArgs e)
         {
 
 
-            database.openConnection();
+            database.OpenConnection();
 
             var name = textBox1.Text;
             var type = textBox2.Text;
@@ -61,7 +61,7 @@ namespace ToDo
                 MessageBox.Show("Запись успешно создана!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            database.closeConnection();
+            database.CloseConnection();
 
 
         }
@@ -73,7 +73,7 @@ namespace ToDo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-             
+
         }
     }
 }

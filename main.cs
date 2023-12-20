@@ -14,13 +14,14 @@ using System.Drawing.Drawing2D;
 using System.CodeDom.Compiler;
 using data_base;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
- using System.Windows.Forms;
+using System.Windows.Forms;
 
 
 
 
 namespace ToDo
 {
+    //  ?????????????????????????????
     enum RoWState
     {
         Existed,
@@ -31,7 +32,7 @@ namespace ToDo
 
     }
 
-    public partial class main : Form
+    public partial class Main : Form
     {
         private System.Timers.Timer timer;
         private DateTime startTime;
@@ -41,10 +42,9 @@ namespace ToDo
         int selectedRow; int selectedRow2;
         int Id_done;
         string Id_subs;
-        task TASK;
+        Task TASK;
 
-
-        public main()
+        public Main()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -63,7 +63,6 @@ namespace ToDo
         {
 
             dataGridView1.Columns.Add("subject_name", "id");
-
             dataGridView1.Columns.Add("subject_name", "subject_name");
             dataGridView1.Columns.Add("type_subject", "type_subject");
             dataGridView1.Columns.Add("teachers", "teachers");
@@ -115,23 +114,23 @@ namespace ToDo
 
 
             dvg.Rows.Add(id_task, task, subject_name, task_desc, deadline, isdone, RoWState.ModifiedNew.ToString());
-              if (isdone == true)
+            if (isdone == true)
             {
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
                 {
                     cell.Style.BackColor = Color.SpringGreen;
                 }
             }
-            
+
             else if (deadline < dateTimePicker2.Value      /*  dateTimePicker1.Value*/)
             {
-                
+
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
                 {
                     cell.Style.BackColor = Color.IndianRed;
                 }
             }
-             
+
             else if (deadline < dateTimePicker2.Value & isdone == true  /* dateTimePicker1.Value.AddDays(1)*/)
             {
                 // Если срок годности истекает через день, устанавливаем цвет фона строки на желтый.
@@ -148,7 +147,7 @@ namespace ToDo
                     cell.Style.BackColor = Color.Yellow;
                 }
             }
-             
+
 
 
 
@@ -172,9 +171,9 @@ namespace ToDo
                 queryString = $"select * from subjects where subject_name = '{selectedValue}'";
 
             }
-            using (SqlCommand command = new SqlCommand(queryString, database.getConnection()))
+            using (SqlCommand command = new SqlCommand(queryString, database.GetConnection()))
             {
-                database.openConnection();
+                database.OpenConnection();
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -186,7 +185,7 @@ namespace ToDo
                     reader.Close(); // Закрываем DataReader, чтобы освободить ресурсы
                 }
 
-                database.closeConnection();
+                database.CloseConnection();
             }
         }
         private void RefreshDataGrid2(DataGridView dvg)
@@ -196,9 +195,9 @@ namespace ToDo
 
             string queryString = $"select * from tasks where subject_name = '{Id_subs}'";
 
-            SqlCommand command = new SqlCommand(queryString, database.getConnection());
+            SqlCommand command = new SqlCommand(queryString, database.GetConnection());
 
-            database.openConnection();
+            database.OpenConnection();
 
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -239,14 +238,14 @@ namespace ToDo
 
             if (selectedRow >= 0)
             {
-                
-             
+
+
 
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
-                 TASK = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
-                
-                
+                TASK = new Task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
+
+
 
 
             }
@@ -260,9 +259,9 @@ namespace ToDo
             FillComboBox();
             CreateColums();
             CreateColums_2();
-           RefreshDataGrid(dataGridView1);
+            RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2); FillComboBox();
-            
+
 
 
 
@@ -274,7 +273,7 @@ namespace ToDo
             try
             {
                 string query = "SELECT subject_name FROM subjects";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, database.getConnection());
+                SqlDataAdapter adapter = new SqlDataAdapter(query, database.GetConnection());
                 DataTable table = new DataTable();
                 adapter.Fill(table);
 
@@ -308,11 +307,11 @@ namespace ToDo
             RefreshDataGrid2(dataGridView2);
             FillComboBox();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void RefreshButtonClick(object sender, EventArgs e)
         {
             update();
         }
-         
+
 
 
         private void button2_Click(object sender, EventArgs e)
@@ -350,9 +349,9 @@ namespace ToDo
                 MessageBox.Show($"Error saving timer data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
 
-        private void aDDSubToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void AddSubjectButtonClick(object sender, EventArgs e)
         {
             Form1 frm = new Form1();
             frm.ShowDialog();
@@ -370,12 +369,12 @@ namespace ToDo
             RefreshDataGrid2(dataGridView2);
 
         }
- 
-       
+
+
         private void button5_Click(object sender, EventArgs e)
         {
-           // string selectedValue =  comboBox1.SelectedValue.ToString();
-            database.openConnection();
+            // string selectedValue =  comboBox1.SelectedValue.ToString();
+            database.OpenConnection();
 
             var task = textBox_task.Text;
             var name = Id_subs;
@@ -385,7 +384,7 @@ namespace ToDo
             var addQuery = "INSERT INTO tasks (task,subject_name, task_desc, deadline,isdone) " +
                            "VALUES (@task, @name, @desc, @time,@done)";
 
-            using (var command = new SqlCommand(addQuery, database.getConnection()))
+            using (var command = new SqlCommand(addQuery, database.GetConnection()))
             {
                 // Adding parameters with proper names
                 command.Parameters.AddWithValue("@task", task);
@@ -399,68 +398,67 @@ namespace ToDo
                 MessageBox.Show("Запись успешно создана!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            database.closeConnection();
+            database.CloseConnection();
             update();
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void DoneClick(object sender, EventArgs e)
         {
 
 
             var changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
-            database.openConnection();
-            var command = new SqlCommand(changequery, database.getConnection());
+            database.OpenConnection();
+            var command = new SqlCommand(changequery, database.GetConnection());
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            database.closeConnection();
+            database.CloseConnection();
 
 
         }
 
-       
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void DeleteSubjectButtonClick(object sender, EventArgs e)
         {
-            database.getConnection();
-            
-                var id = Convert.ToInt32(dataGridView1.Rows[selectedRow].Cells[0].Value);
+            database.GetConnection();
+
+            var id = Convert.ToInt32(dataGridView1.Rows[selectedRow].Cells[0].Value);
 
             var DeleteQuery = $"delete from subjects where  subject_name = '{Id_subs}' ";
 
 
-            var command = new SqlCommand(DeleteQuery, database.getConnection());
-                command.ExecuteNonQuery();
+            var command = new SqlCommand(DeleteQuery, database.GetConnection());
+            command.ExecuteNonQuery();
 
-                database.closeConnection();
+            database.CloseConnection();
             update();
         }
 
-        private void delete_Click(object sender, EventArgs e)
+        private void DeleteButtonClick(object sender, EventArgs e)
         {
-            database.getConnection();
+            database.GetConnection();
             {
                 var id = Convert.ToInt32(dataGridView2.Rows[selectedRow2].Cells[0].Value);
 
                 var DeleteQuery = $"delete from tasks where id_task = {id} ";
 
-                var command = new SqlCommand(DeleteQuery, database.getConnection());
+                var command = new SqlCommand(DeleteQuery, database.GetConnection());
                 command.ExecuteNonQuery();
 
-                database.closeConnection();
+                database.CloseConnection();
             }
             update();
         }
 
-       
 
-        private void button7_Click(object sender, EventArgs e)
+
+        private void EditButtonClick(object sender, EventArgs e)
         {
             Form2 frm2 = new Form2(TASK);
             frm2.ShowDialog();
             update();
-
         }
         int t = 0;
         private void button6_Click_1(object sender, EventArgs e)
@@ -475,7 +473,7 @@ namespace ToDo
                 this.Height = 771;
                 t = 0;
             }
-             
+
         }
     }
 }

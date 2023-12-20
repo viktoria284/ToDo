@@ -17,8 +17,8 @@ namespace ToDo
     public partial class Form2 : Form
     {
         DataBase database = new DataBase();
-        private task TASK;
-        public Form2(task TASK)
+        private Task TASK;
+        public Form2(Task TASK)
         {
             this.TASK = TASK;
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace ToDo
             // Assuming TextBox_subject is a ComboBox
             
 
-            if (TASK.isdone == true)
+            if (TASK.isDone == true)
             {
                 checkBox1.Checked = true;
             }
@@ -61,8 +61,8 @@ namespace ToDo
 
 
             var changequery = $"update tasks set task='{name}', task_desc = '{des}', deadline = '{times}', isdone = '{don}' where id_task = '{id}'";
-            database.openConnection();
-            var command = new SqlCommand(changequery, database.getConnection());
+            database.OpenConnection();
+            var command = new SqlCommand(changequery, database.GetConnection());
              
             
 
@@ -70,7 +70,7 @@ namespace ToDo
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            database.closeConnection();
+            database.CloseConnection();
              
         }
 
