@@ -16,5 +16,10 @@ namespace ToDo
         {
             InitializeComponent();
         }
+
+        private void Sign_up_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

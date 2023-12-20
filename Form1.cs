@@ -48,7 +48,7 @@ namespace ToDo
             var addQuery = "INSERT INTO subjects (subject_name, type_subject, teachers, requirements, notes) " +
                            "VALUES (@name, @type, @teacher, @req, @notes)";
 
-            using (var command = new SqlCommand(addQuery, database.getConnection()))
+            using (var command = new SqlCommand(addQuery, database.GetConnection()))
             {
                 // Adding parameters with proper names
                 command.Parameters.AddWithValue("@name", name);

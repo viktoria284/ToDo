@@ -37,7 +37,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            comboBox1 = new ComboBox();
+            SubjectsComboBox = new ComboBox();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             AddSubjectButton = new ToolStripMenuItem();
@@ -157,16 +157,16 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // comboBox1
+            // SubjectsComboBox
             // 
-            comboBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(5, 64);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(138, 40);
-            comboBox1.TabIndex = 11;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            SubjectsComboBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            SubjectsComboBox.FormattingEnabled = true;
+            SubjectsComboBox.Location = new Point(5, 64);
+            SubjectsComboBox.Margin = new Padding(3, 4, 3, 4);
+            SubjectsComboBox.Name = "SubjectsComboBox";
+            SubjectsComboBox.Size = new Size(138, 40);
+            SubjectsComboBox.TabIndex = 11;
+            SubjectsComboBox.SelectedIndexChanged += SubjectsComboBox_SelectedIndexChanged;
             // 
             // menuStrip1
             // 
@@ -305,7 +305,7 @@
             Controls.Add(DoneButton);
             Controls.Add(DeleteButton);
             Controls.Add(EditButton);
-            Controls.Add(comboBox1);
+            Controls.Add(SubjectsComboBox);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -336,7 +336,7 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private ComboBox comboBox1;
+        private ComboBox SubjectsComboBox;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem AddSubjectButton;

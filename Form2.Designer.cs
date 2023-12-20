@@ -1,6 +1,6 @@
 ﻿namespace ToDo
 {
-    partial class Change
+    partial class Form2
     {
         /// <summary>
         /// Required designer variable.

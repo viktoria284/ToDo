@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ToDo
 {
-    public partial class Change : Form
+    public partial class Form2 : Form
     {
         DataBase database = new DataBase();
         private Task TASK;

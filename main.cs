@@ -160,7 +160,7 @@ namespace ToDo
 
             dvg.Rows.Clear();
             string queryString;
-            string selectedValue = comboBox1.SelectedValue.ToString();
+            string selectedValue = SubjectsComboBox.SelectedValue.ToString();
             if (selectedValue == "ALL" || selectedValue == null)
 
             {
@@ -291,9 +291,9 @@ namespace ToDo
                 // Или используем MessageBox.Show для вывода содержимого DataTable
                 // MessageBox.Show(table.Rows.Count.ToString());
 
-                comboBox1.DisplayMember = "subject_name";
-                comboBox1.ValueMember = "subject_name";
-                comboBox1.DataSource = table;
+                SubjectsComboBox.DisplayMember = "subject_name";
+                SubjectsComboBox.ValueMember = "subject_name";
+                SubjectsComboBox.DataSource = table;
             }
             catch (Exception ex)
             {
@@ -363,11 +363,10 @@ namespace ToDo
 
 
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SubjectsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2);
-
         }
 
 
@@ -456,7 +455,7 @@ namespace ToDo
 
         private void EditButtonClick(object sender, EventArgs e)
         {
-            Change frm2 = new Change(TASK);
+            Form2 frm2 = new Form2(TASK);
             frm2.ShowDialog();
             update();
         }
