@@ -452,10 +452,13 @@ namespace ToDo
                 var id = Convert.ToInt32(dataGridView1.Rows[selectedRow].Cells[0].Value);
 
             var DeleteQuery = $"delete from subjects where  subject_name = '{Id_subs}' ";
-
+            var DeleteQuery2 = $"delete from tasks where  subject_name = '{Id_subs}' ";
+            var command2 = new SqlCommand(DeleteQuery2, database.getConnection());
 
             var command = new SqlCommand(DeleteQuery, database.getConnection());
-                command.ExecuteNonQuery();
+            command2.ExecuteNonQuery();
+            command.ExecuteNonQuery();
+             
 
                 database.closeConnection();
             update();
