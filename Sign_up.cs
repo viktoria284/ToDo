@@ -22,7 +22,7 @@ namespace ToDo
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
             if (checkuser() == false)
@@ -34,6 +34,14 @@ namespace ToDo
                 if (textBox_password.Text == "" || textBox_login.Text == "" || (textBox_password.Text == "" && textBox_login.Text == ""))
                 {
                     MessageBox.Show("Заполните все поля", "errore");
+                }
+                else if (textBox_password.Text != textBox_password2.Text )
+                {
+                    MessageBox.Show("Пароль не совпадает", "errore");
+                }
+                else if (textBox_password.Text.Length < 5 || textBox_password.Text.Length > 10)
+                {
+                    MessageBox.Show("Длина пароля что то там", "errore");
                 }
                 else
                 {
@@ -113,5 +121,7 @@ namespace ToDo
         {
 
         }
+
+        
     }
 }

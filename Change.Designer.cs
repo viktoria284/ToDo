@@ -34,6 +34,8 @@
             this.textBoxtask = new System.Windows.Forms.TextBox();
             this.textBox_des = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_id
@@ -55,9 +57,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(143, 221);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 23);
+            this.button1.Size = new System.Drawing.Size(148, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Accept changes";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -82,23 +84,46 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(149, 196);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(83, 19);
+            this.checkBox1.Size = new System.Drawing.Size(54, 19);
             this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.Text = "Done";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(99, 110);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.TabIndex = 81;
+            this.label6.Text = "Description:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(99, 42);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 24);
+            this.label7.TabIndex = 80;
+            this.label7.Text = "Edit task:";
+            // 
+            // Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 296);
+            this.ClientSize = new System.Drawing.Size(1565, 537);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox_des);
             this.Controls.Add(this.textBoxtask);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox_id);
-            this.Name = "Form2";
+            this.Name = "Change";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
@@ -114,5 +139,7 @@
         private TextBox textBoxtask;
         private TextBox textBox_des;
         private CheckBox checkBox1;
+        private Label label6;
+        private Label label7;
     }
 }
