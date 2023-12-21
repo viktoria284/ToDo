@@ -21,7 +21,6 @@ using System.Windows.Forms;
 
 namespace ToDo
 {
-    //  ?????????????????????????????
     enum RoWState
     {
         Existed,
@@ -29,7 +28,6 @@ namespace ToDo
         Modified,
         ModifiedNew,
         Deleted,
-
     }
 
     public partial class Main : Form
@@ -40,17 +38,48 @@ namespace ToDo
         string predmet;
         DataBase database = new DataBase();
         int selectedRow; int selectedRow2;
-        int Id_done;
+        string Id_done;
         string Id_subs;
         Task TASK;
-
-        public Main()
+        bool statuss;
+        private User user;
+        /*public Main(User user)
         {
+            this.user = user;
+        }*/
+        public Main(User user)
+        {
+            this.user = user;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             timer = new System.Timers.Timer();
             timer.Interval = 1000; // 1 секунда
             timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Tick);
+            this.user = user;
+
+            if (user.Access == 1)
+            {
+                dateTimePicker1.Visible = true;
+                AddTaskButton.Visible = true;
+                EditButton.Visible = true;
+                DeleteButton.Visible = true;
+                textBox_desk.Visible = true;
+                textBox_task.Visible = true;
+                AddSubjectButton.Visible = true;
+                DeleteSubjectButton.Visible = true;
+            }
+            else
+            {
+                dateTimePicker1.Visible = false;
+                AddTaskButton.Visible = false;
+                EditButton.Visible = false;
+                DeleteButton.Visible = false;
+                textBox_desk.Visible = false;
+                textBox_task.Visible = false;
+                AddSubjectButton.Visible = false;
+                DeleteSubjectButton.Visible = false;
+            }
+
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -61,7 +90,6 @@ namespace ToDo
 
         private void CreateColums()
         {
-
             dataGridView1.Columns.Add("subject_name", "id");
             dataGridView1.Columns.Add("subject_name", "subject_name");
             dataGridView1.Columns.Add("type_subject", "type_subject");
@@ -75,12 +103,11 @@ namespace ToDo
             dataGridView2.Columns.Add("id_task", "id_task");
             dataGridView2.Columns.Add("task", "task");
             dataGridView2.Columns.Add("subject_name", "subject_name");
-
             dataGridView2.Columns.Add("task_desc", "task_desc");
             dataGridView2.Columns.Add("deadline", "deadline");
             dataGridView2.Columns.Add("isdone", "isdone");
-
         }
+
         private void ReadSingleRow(DataGridView dvg, IDataRecord record)
         {
 
@@ -95,23 +122,16 @@ namespace ToDo
             bool isNew = true;
 
             dvg.Rows.Add(id_subject, subject_name, type_subject, teachers, requirements, notes);
-
-
-
-
         }
 
         private void ReadSingleRow2(DataGridView dvg, IDataRecord record)
         {
-
             int id_task = record.GetInt32(0);
             string task = record.GetString(1);
             string subject_name = record.GetString(2);
             string task_desc = record.GetString(3);
             DateTime deadline = record.GetDateTime(4);
             bool isdone = record.GetBoolean(5);
-
-
 
             dvg.Rows.Add(id_task, task, subject_name, task_desc, deadline, isdone, RoWState.ModifiedNew.ToString());
             if (isdone == true)
@@ -147,17 +167,11 @@ namespace ToDo
                     cell.Style.BackColor = Color.Yellow;
                 }
             }
-
-
-
-
         }
-
 
 
         private void RefreshDataGrid(DataGridView dvg)
         {
-
             dvg.Rows.Clear();
             string queryString;
             string selectedValue = SubjectsComboBox.SelectedValue.ToString();
@@ -207,16 +221,11 @@ namespace ToDo
 
             }
             reader.Close();
-
-
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             selectedRow = e.RowIndex;
-
-
-
 
             if (selectedRow >= 0)
             {
@@ -234,20 +243,14 @@ namespace ToDo
 
 
 
-
-
-            if (selectedRow >= 0)
+            if (selectedRow2 >= 0)
             {
-
-
-
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
                 TASK = new Task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
 
-
-
-
+                Id_done = row.Cells[0].Value.ToString();
+                statuss = (bool)row.Cells[5].Value;
             }
 
 
@@ -256,16 +259,16 @@ namespace ToDo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             FillComboBox();
             CreateColums();
             CreateColums_2();
+
             RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2); FillComboBox();
 
-
-
-
-
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView2.Columns[0].Visible = false;
         }
 
         private void FillComboBox()
@@ -311,8 +314,6 @@ namespace ToDo
         {
             update();
         }
-
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -369,7 +370,6 @@ namespace ToDo
             RefreshDataGrid2(dataGridView2);
         }
 
-
         private void AddTaskButtonClick(object sender, EventArgs e)
         {
             // string selectedValue =  comboBox1.SelectedValue.ToString();
@@ -403,18 +403,25 @@ namespace ToDo
 
         private void DoneClick(object sender, EventArgs e)
         {
+            string changequery;
+            if (statuss == false)
+            {
+                changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
+            }
+            else
+            {
+                changequery = $"update tasks set isdone ='{false}' where id_task = '{Id_done}' ";
+
+            }
 
 
-            var changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
             database.OpenConnection();
             var command = new SqlCommand(changequery, database.GetConnection());
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             database.CloseConnection();
-
-
+            update();
         }
 
 
@@ -426,10 +433,14 @@ namespace ToDo
             var id = Convert.ToInt32(dataGridView1.Rows[selectedRow].Cells[0].Value);
 
             var DeleteQuery = $"delete from subjects where  subject_name = '{Id_subs}' ";
-
+            var DeleteQuery2 = $"delete from tasks where  subject_name = '{Id_subs}' ";
+            var command2 = new SqlCommand(DeleteQuery2, database.GetConnection());
 
             var command = new SqlCommand(DeleteQuery, database.GetConnection());
+            command2.ExecuteNonQuery();
             command.ExecuteNonQuery();
+
+
 
             database.CloseConnection();
             update();
@@ -451,13 +462,11 @@ namespace ToDo
             update();
         }
 
-
-
         private void EditButtonClick(object sender, EventArgs e)
         {
             editTask frm2 = new editTask(TASK);
             frm2.ShowDialog();
-            update();
+            RefreshDataGrid2(dataGridView2);
         }
         int t = 0;
         private void button6_Click_1(object sender, EventArgs e)
@@ -475,13 +484,55 @@ namespace ToDo
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
 
-        }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+            DataGridView dvg = dataGridView1;
+            dvg.Rows.Clear();
+
+            string queryString = $"select * from subjects  ";
+
+
+            using (SqlCommand command = new SqlCommand(queryString, database.GetConnection()))
+            {
+                database.OpenConnection();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReadSingleRow(dvg, reader);
+                    }
+
+                    reader.Close(); // Закрываем DataReader, чтобы освободить ресурсы
+                }
+
+                database.CloseConnection();
+            }
+            DataGridView dvg2 = dataGridView2;
+
+            dvg2.Rows.Clear();
+
+            string queryStringg = $"select * from tasks ";
+
+            SqlCommand command2 = new SqlCommand(queryStringg, database.GetConnection());
+
+            database.OpenConnection();
+
+            SqlDataReader reader2 = command2.ExecuteReader();
+            while (reader2.Read())
+            {
+
+                ReadSingleRow2(dvg2, reader2);
+
+            }
+            reader2.Close();
+
+
+
+
+
 
         }
     }

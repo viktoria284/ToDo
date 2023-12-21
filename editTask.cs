@@ -32,8 +32,6 @@ namespace ToDo
             textBox_des.Text = TASK.TextBox_desc;
 
             // Assuming TextBox_subject is a ComboBox
-
-
             if (TASK.isDone == true)
             {
                 checkBox1.Checked = true;
@@ -42,8 +40,6 @@ namespace ToDo
             {
                 checkBox1.Checked = false;
             }
-
-
         }
 
         private void AcceptChangesButtonClick(object sender, EventArgs e)
@@ -55,31 +51,18 @@ namespace ToDo
             var times = dateTimePicker1.Text;
             var don = checkBox1.Checked.ToString();
 
-
-
-
-
-
             var changequery = $"update tasks set task='{name}', task_desc = '{des}', deadline = '{times}', isdone = '{don}' where id_task = '{id}'";
             database.OpenConnection();
             var command = new SqlCommand(changequery, database.GetConnection());
-
-
-
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             database.CloseConnection();
-
+            this.Hide();
         }
 
-        private void textBoxtask_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }

@@ -31,12 +31,13 @@
             label4 = new Label();
             label1 = new Label();
             label3 = new Label();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            textBox_password2 = new TextBox();
+            textBox_password = new TextBox();
+            textBox_login = new TextBox();
             label2 = new Label();
             SignUpButton = new Button();
             LogInPage = new LinkLabel();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // label4
@@ -69,29 +70,29 @@
             label3.TabIndex = 35;
             label3.Text = "Email:";
             // 
-            // textBox4
+            // textBox_password2
             // 
-            textBox4.Location = new Point(110, 263);
-            textBox4.Margin = new Padding(3, 4, 3, 4);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(227, 27);
-            textBox4.TabIndex = 34;
+            textBox_password2.Location = new Point(110, 263);
+            textBox_password2.Margin = new Padding(3, 4, 3, 4);
+            textBox_password2.Name = "textBox_password2";
+            textBox_password2.Size = new Size(227, 27);
+            textBox_password2.TabIndex = 34;
             // 
-            // textBox3
+            // textBox_password
             // 
-            textBox3.Location = new Point(110, 193);
-            textBox3.Margin = new Padding(3, 4, 3, 4);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(227, 27);
-            textBox3.TabIndex = 33;
+            textBox_password.Location = new Point(110, 193);
+            textBox_password.Margin = new Padding(3, 4, 3, 4);
+            textBox_password.Name = "textBox_password";
+            textBox_password.Size = new Size(227, 27);
+            textBox_password.TabIndex = 33;
             // 
-            // textBox2
+            // textBox_login
             // 
-            textBox2.Location = new Point(110, 122);
-            textBox2.Margin = new Padding(3, 4, 3, 4);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(227, 27);
-            textBox2.TabIndex = 32;
+            textBox_login.Location = new Point(110, 122);
+            textBox_login.Margin = new Padding(3, 4, 3, 4);
+            textBox_login.Name = "textBox_login";
+            textBox_login.Size = new Size(227, 27);
+            textBox_login.TabIndex = 32;
             // 
             // label2
             // 
@@ -115,7 +116,6 @@
             SignUpButton.TabIndex = 39;
             SignUpButton.Text = "Sign up";
             SignUpButton.UseVisualStyleBackColor = false;
-            SignUpButton.Click += SignUpButton_Click;
             // 
             // LogInPage
             // 
@@ -128,20 +128,31 @@
             LogInPage.Text = "Already have account?";
             LogInPage.LinkClicked += LogInPage_LinkClicked;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(189, 294);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(101, 24);
+            checkBox1.TabIndex = 41;
+            checkBox1.Text = "checkBox1";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Sign_up
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(439, 450);
+            Controls.Add(checkBox1);
             Controls.Add(LogInPage);
             Controls.Add(SignUpButton);
             Controls.Add(label2);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(label3);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(textBox_password2);
+            Controls.Add(textBox_password);
+            Controls.Add(textBox_login);
             Name = "Sign_up";
             Text = "Sign_up";
             Load += Sign_up_Load;
@@ -154,11 +165,12 @@
         private Label label4;
         private Label label1;
         private Label label3;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox textBox_password2;
+        private TextBox textBox_password;
+        private TextBox textBox_login;
         private Label label2;
         private Button SignUpButton;
         private LinkLabel LogInPage;
+        private CheckBox checkBox1;
     }
 }

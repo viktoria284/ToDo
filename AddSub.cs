@@ -17,7 +17,7 @@ namespace ToDo
     public partial class AddSub : Form
     {
         DataBase database = new DataBase();
-        Main mainInstance = new Main();
+        //Main mainInstance = new Main(); //оно надо? у меня было у него нет
 
         public AddSub()
         {
@@ -31,23 +31,28 @@ namespace ToDo
         {
             database.OpenConnection();
 
+            // Получаем данные из текстовых полей формы
             var name = textBox1.Text;
             var type = textBox2.Text;
             var teacher = textBox3.Text;
             var req = textBox4.Text;
             var notes = textBox5.Text;
 
+            // Создаем экземпляр класса Subject
+            Subject subject = new Subject(name, type, teacher, req, !string.IsNullOrEmpty(notes));
+
+            // Используем параметризованный SQL-запрос с использованием данных из экземпляра Subject
             var addQuery = "INSERT INTO subjects (subject_name, type_subject, teachers, requirements, notes) " +
                            "VALUES (@name, @type, @teacher, @req, @notes)";
 
             using (var command = new SqlCommand(addQuery, database.GetConnection()))
             {
-                // Adding parameters with proper names
-                command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@type", type);
-                command.Parameters.AddWithValue("@teacher", teacher);
-                command.Parameters.AddWithValue("@req", req);
-                command.Parameters.AddWithValue("@notes", notes);
+                // Добавляем параметры с правильными именами
+                command.Parameters.AddWithValue("@name", subject.Name);
+                command.Parameters.AddWithValue("@type", subject.Type);
+                command.Parameters.AddWithValue("@teacher", subject.Teacher);
+                command.Parameters.AddWithValue("@req", subject.Requirements);
+                command.Parameters.AddWithValue("@notes", subject.HasNotes);
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно создана!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -32,8 +32,8 @@
             label2 = new Label();
             label1 = new Label();
             label3 = new Label();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            textBox_password = new TextBox();
+            textBox_login = new TextBox();
             SignUpPage = new LinkLabel();
             SuspendLayout();
             // 
@@ -81,23 +81,21 @@
             label3.TabIndex = 43;
             label3.Text = "Email:";
             // 
-            // textBox3
+            // textBox_password
             // 
-            textBox3.Location = new Point(104, 229);
-            textBox3.Margin = new Padding(3, 4, 3, 4);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(227, 27);
-            textBox3.TabIndex = 41;
-            textBox3.TextChanged += textBox3_TextChanged;
+            textBox_password.Location = new Point(104, 229);
+            textBox_password.Margin = new Padding(3, 4, 3, 4);
+            textBox_password.Name = "textBox_password";
+            textBox_password.Size = new Size(227, 27);
+            textBox_password.TabIndex = 41;
             // 
-            // textBox2
+            // textBox_login
             // 
-            textBox2.Location = new Point(104, 158);
-            textBox2.Margin = new Padding(3, 4, 3, 4);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(227, 27);
-            textBox2.TabIndex = 40;
-            textBox2.TextChanged += textBox2_TextChanged;
+            textBox_login.Location = new Point(104, 158);
+            textBox_login.Margin = new Padding(3, 4, 3, 4);
+            textBox_login.Name = "textBox_login";
+            textBox_login.Size = new Size(227, 27);
+            textBox_login.TabIndex = 40;
             // 
             // SignUpPage
             // 
@@ -120,8 +118,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(label3);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(textBox_password);
+            Controls.Add(textBox_login);
             Name = "login";
             Text = "login";
             Load += login_Load;
@@ -135,8 +133,8 @@
         private Label label2;
         private Label label1;
         private Label label3;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox textBox_password;
+        private TextBox textBox_login;
         private LinkLabel SignUpPage;
     }
 }
