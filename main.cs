@@ -63,9 +63,11 @@ namespace ToDo
                 textBox_desk.Visible = true;
                 textBox_task.Visible = true;
                 button5.Visible = true;
+                deleteToolStripMenuItem.Visible=true;
             }
             else
             {
+                deleteToolStripMenuItem.Visible = false;
                 aDDSubToolStripMenuItem.Visible = false;
                 dateTimePicker1.Visible = false;
                 textBox_desk.Visible = false;
@@ -545,7 +547,28 @@ namespace ToDo
 
                 database.closeConnection();
             }
-             
+            DataGridView dvg2 = dataGridView2;
+            
+            dvg2.Rows.Clear();
+
+            string queryStringg = $"select * from tasks ";
+
+            SqlCommand command2 = new SqlCommand(queryStringg, database.getConnection());
+
+            database.openConnection();
+
+            SqlDataReader reader2 = command2.ExecuteReader();
+            while (reader2.Read())
+            {
+
+                ReadSingleRow2(dvg2, reader2);
+
+            }
+            reader2.Close();
+
+
+
+
         }
     }
 }

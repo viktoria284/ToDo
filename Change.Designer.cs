@@ -48,14 +48,15 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(99, 167);
+            this.dateTimePicker1.Location = new System.Drawing.Point(68, 175);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(192, 23);
             this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(108, 221);
+            this.button1.Location = new System.Drawing.Point(77, 229);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 23);
             this.button1.TabIndex = 2;
@@ -65,56 +66,61 @@
             // 
             // textBoxtask
             // 
-            this.textBoxtask.Location = new System.Drawing.Point(99, 69);
+            this.textBoxtask.Location = new System.Drawing.Point(68, 77);
             this.textBoxtask.Multiline = true;
             this.textBoxtask.Name = "textBoxtask";
             this.textBoxtask.Size = new System.Drawing.Size(192, 36);
             this.textBoxtask.TabIndex = 3;
+            this.textBoxtask.TextChanged += new System.EventHandler(this.textBoxtask_TextChanged_1);
             // 
             // textBox_des
             // 
-            this.textBox_des.Location = new System.Drawing.Point(99, 111);
+            this.textBox_des.Location = new System.Drawing.Point(68, 119);
             this.textBox_des.Multiline = true;
             this.textBox_des.Name = "textBox_des";
             this.textBox_des.Size = new System.Drawing.Size(192, 40);
             this.textBox_des.TabIndex = 4;
+            this.textBox_des.TextChanged += new System.EventHandler(this.textBox_des_TextChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(149, 196);
+            this.checkBox1.Location = new System.Drawing.Point(118, 204);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(54, 19);
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Done";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(99, 110);
+            this.label6.Location = new System.Drawing.Point(68, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 20);
             this.label6.TabIndex = 81;
             this.label6.Text = "Description:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(99, 42);
+            this.label7.Location = new System.Drawing.Point(68, 60);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 24);
             this.label7.TabIndex = 80;
             this.label7.Text = "Edit task:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1565, 537);
+            this.ClientSize = new System.Drawing.Size(337, 329);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBox1);
