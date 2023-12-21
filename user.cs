@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace ToDo
 {
-    public abstract class User
+    interface Useror
+    {
+        int Access { get; set; }
+
+    }
+    public abstract class User: Useror
     {
          public int Access { get; set; }
 

@@ -59,6 +59,7 @@
             this.LogInPage.TabIndex = 106;
             this.LogInPage.TabStop = true;
             this.LogInPage.Text = "Already have account?";
+            this.LogInPage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogInPage_LinkClicked);
             // 
             // button1
             // 

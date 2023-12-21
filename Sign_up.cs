@@ -70,7 +70,7 @@ namespace ToDo
                         MessageBox.Show("Аккаунт успешно создан", "succses!");
                         login frm_login = new login();
                         this.Hide();
-                        frm_login.ShowDialog();
+                         
 
 
                     }
@@ -122,6 +122,10 @@ namespace ToDo
 
         }
 
-        
+        private void LogInPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+
+        }
     }
 }

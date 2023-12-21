@@ -283,7 +283,9 @@ namespace ToDo
             FillComboBox();
             CreateColums();
             CreateColums_2();
+            
            RefreshDataGrid(dataGridView1);
+              
             RefreshDataGrid2(dataGridView2); FillComboBox();
 
             dataGridView1.Columns[0].Visible = false;
@@ -439,7 +441,7 @@ namespace ToDo
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             database.closeConnection();
-
+            update();
 
         }
 
@@ -501,6 +503,35 @@ namespace ToDo
             {
                 this.Height = 771;
                 t = 0;
+            }
+             
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+
+            DataGridView dvg = dataGridView1;
+            dvg.Rows.Clear();
+             
+               string  queryString = $"select * from subjects  ";
+           
+            
+            using (SqlCommand command = new SqlCommand(queryString, database.getConnection()))
+            {
+                database.openConnection();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReadSingleRow(dvg, reader);
+                    }
+
+                    reader.Close(); // Закрываем DataReader, чтобы освободить ресурсы
+                }
+
+                database.closeConnection();
             }
              
         }

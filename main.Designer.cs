@@ -51,6 +51,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -281,12 +282,23 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(212, 12);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 37);
+            this.button10.TabIndex = 27;
+            this.button10.Text = "ALL";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1014, 650);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.button5);
@@ -341,5 +353,6 @@
         private ToolStripMenuItem deleteToolStripMenuItem;
         private DateTimePicker dateTimePicker2;
         private Button button6;
+        private Button button10;
     }
 }
