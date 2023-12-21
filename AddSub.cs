@@ -14,29 +14,21 @@ using System.Xml.Linq;
 
 namespace ToDo
 {
-    public partial class Form1 : Form
+    public partial class AddSub : Form
     {
         DataBase database = new DataBase();
         Main mainInstance = new Main();
 
-
-
-
-        public Form1()
+        public AddSub()
         {
             InitializeComponent();
             CenterToParent();
         }
 
-
-
-
         // Используйте свойство для доступа к элементу
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddSubjectButtonClick(object sender, EventArgs e)
         {
-
-
             database.OpenConnection();
 
             var name = textBox1.Text;
@@ -62,8 +54,6 @@ namespace ToDo
             }
 
             database.CloseConnection();
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)

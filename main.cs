@@ -353,7 +353,7 @@ namespace ToDo
 
         private void AddSubjectButtonClick(object sender, EventArgs e)
         {
-            Form1 frm = new Form1();
+            AddSub frm = new AddSub();
             frm.ShowDialog();
             update();
         }
@@ -370,7 +370,7 @@ namespace ToDo
         }
 
 
-        private void button5_Click(object sender, EventArgs e)
+        private void AddTaskButtonClick(object sender, EventArgs e)
         {
             // string selectedValue =  comboBox1.SelectedValue.ToString();
             database.OpenConnection();
@@ -455,7 +455,7 @@ namespace ToDo
 
         private void EditButtonClick(object sender, EventArgs e)
         {
-            Form2 frm2 = new Form2(TASK);
+            editTask frm2 = new editTask(TASK);
             frm2.ShowDialog();
             update();
         }
@@ -472,6 +472,16 @@ namespace ToDo
                 this.Height = 771;
                 t = 0;
             }
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }
