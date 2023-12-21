@@ -502,8 +502,7 @@ namespace ToDo
         {
             Change frm2 = new Change(TASK);
             frm2.ShowDialog();
-            update();
-
+            RefreshDataGrid2(dataGridView2);
         }
         int t = 0;
         private void button6_Click_1(object sender, EventArgs e)
