@@ -263,7 +263,7 @@ namespace ToDo
 
 
 
-            if (selectedRow >= 0)
+            if (selectedRow2 >= 0)
             {
                 
              
