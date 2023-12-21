@@ -20,6 +20,25 @@ namespace ToDo
         public Sign_up()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private void Sign_up_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void SignUpButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogInPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+           // logIn log_in = new logIn(nameProgram);
+           // this.Close();
+            //log_in.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -7,37 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace ToDo
 {
-    
- 
-        public class task
+    public class Task
+    {
+        public string TextBox_id { get; set; } //int ??
+        public string TextBox_task { get; set; }
+        public string TextBox_desc { get; set; }
+        public string DateTimePicker { get; set; }
+        public bool isDone { get; set; }
+        public Task(string id, string task, string desc, string date, bool isd)
         {
-
-
-
-
-            public string TextBox_id { get; set; }
-            public string TextBox_task { get; set; }
-            public string TextBox_desc { get; set; }
-             
-            public string DateTimePicker_st_li { get; set; }
-            public bool isdone { get; set; }
-            public task(string id, string taskk,   string desc, string date, bool sa)
-            {
-                TextBox_id = id;
-            TextBox_task = taskk;
-         
+            TextBox_id = id;
+            TextBox_task = task;
             TextBox_desc = desc;
-                 
-                DateTimePicker_st_li = date;
-            isdone = sa;
-
-
-            }
-
-
+            DateTimePicker = date;
+            isDone = isd;
         }
-    
-
+    }
 }

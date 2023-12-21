@@ -14,11 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ToDo
 {
-    public partial class Change : Form
+    public partial class editTask : Form
     {
         DataBase database = new DataBase();
-        private task TASK;
-        public Change(task TASK)
+        private Task TASK;
+        public editTask(Task TASK)
         {
             this.TASK = TASK;
             InitializeComponent();
@@ -32,9 +32,9 @@ namespace ToDo
             textBox_des.Text = TASK.TextBox_desc;
 
             // Assuming TextBox_subject is a ComboBox
-            
 
-            if (TASK.isdone == true)
+
+            if (TASK.isDone == true)
             {
                 checkBox1.Checked = true;
             }
@@ -46,11 +46,11 @@ namespace ToDo
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AcceptChangesButtonClick(object sender, EventArgs e)
         {
             var id = textBox_id.Text;
             var name = textBoxtask.Text;
-             
+
             var des = textBox_des.Text;
             var times = dateTimePicker1.Text;
             var don = checkBox1.Checked.ToString();
@@ -61,20 +61,30 @@ namespace ToDo
 
 
             var changequery = $"update tasks set task='{name}', task_desc = '{des}', deadline = '{times}', isdone = '{don}' where id_task = '{id}'";
-            database.openConnection();
-            var command = new SqlCommand(changequery, database.getConnection());
-             
-            
+            database.OpenConnection();
+            var command = new SqlCommand(changequery, database.GetConnection());
+
+
 
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            database.closeConnection();
-             
+            database.CloseConnection();
+
         }
 
         private void textBoxtask_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

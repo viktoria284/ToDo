@@ -1,6 +1,6 @@
 ﻿namespace ToDo
 {
-    partial class main
+    partial class Main
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aDDSubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox_task = new System.Windows.Forms.TextBox();
-            this.textBox_desk = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button5 = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.button6 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            dataGridView1 = new DataGridView();
+            RefreshButton = new Button();
+            dataGridView2 = new DataGridView();
+            label1 = new Label();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            SubjectsComboBox = new ComboBox();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            AddSubjectButton = new ToolStripMenuItem();
+            DeleteSubjectButton = new ToolStripMenuItem();
+            EditButton = new Button();
+            DeleteButton = new Button();
+            DoneButton = new Button();
+            textBox_task = new TextBox();
+            textBox_desk = new TextBox();
+            dateTimePicker1 = new DateTimePicker();
+            AddTaskButton = new Button();
+            dateTimePicker2 = new DateTimePicker();
+            button6 = new Button();
+            label2 = new Label();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // dataGridView1
             // 
@@ -78,7 +81,7 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
-            // button1
+            // RefreshButton
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button1.Location = new System.Drawing.Point(44, 470);
@@ -153,7 +156,7 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // comboBox1
+            // SubjectsComboBox
             // 
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox1.FormattingEnabled = true;
@@ -175,28 +178,26 @@
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aDDSubToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "file";
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddSubjectButton, DeleteSubjectButton });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(44, 24);
+            fileToolStripMenuItem.Text = "file";
             // 
-            // aDDSubToolStripMenuItem
+            // AddSubjectButton
             // 
-            this.aDDSubToolStripMenuItem.Name = "aDDSubToolStripMenuItem";
-            this.aDDSubToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.aDDSubToolStripMenuItem.Text = "ADD sub.";
-            this.aDDSubToolStripMenuItem.Click += new System.EventHandler(this.aDDSubToolStripMenuItem_Click);
+            AddSubjectButton.Name = "AddSubjectButton";
+            AddSubjectButton.Size = new Size(185, 26);
+            AddSubjectButton.Text = "add subject";
+            AddSubjectButton.Click += AddSubjectButtonClick;
             // 
-            // deleteToolStripMenuItem
+            // DeleteSubjectButton
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.deleteToolStripMenuItem.Text = "delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            DeleteSubjectButton.Name = "DeleteSubjectButton";
+            DeleteSubjectButton.Size = new Size(185, 26);
+            DeleteSubjectButton.Text = "delete subject";
+            DeleteSubjectButton.Click += DeleteSubjectButtonClick;
             // 
-            // button7
+            // EditButton
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button7.Location = new System.Drawing.Point(550, 471);
@@ -207,7 +208,7 @@
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button8
+            // DeleteButton
             // 
             this.button8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button8.Location = new System.Drawing.Point(380, 470);
@@ -218,7 +219,7 @@
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.delete_Click);
             // 
-            // button9
+            // DoneButton
             // 
             this.button9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button9.Location = new System.Drawing.Point(211, 472);
@@ -254,7 +255,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 22;
             // 
-            // button5
+            // AddTaskButton
             // 
             this.button5.Location = new System.Drawing.Point(769, 427);
             this.button5.Name = "button5";
@@ -273,15 +274,38 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(12, 426);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            button6.Location = new Point(26, 632);
+            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Name = "button6";
+            button6.Size = new Size(26, 31);
+            button6.TabIndex = 26;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click_1;
             // 
-            // main
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Rockwell", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(888, 298);
+            label2.Name = "label2";
+            label2.Size = new Size(116, 26);
+            label2.TabIndex = 27;
+            label2.Text = "New task:";
+            label2.Click += label2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(888, 406);
+            label3.Name = "label3";
+            label3.Size = new Size(122, 22);
+            label3.TabIndex = 28;
+            label3.Text = "Description:";
+            label3.Click += label3_Click;
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -321,25 +345,27 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button button1;
+        private Button RefreshButton;
         private DataGridView dataGridView2;
         private Label label1;
         private Button button2;
         private Button button3;
         private Button button4;
-        private ComboBox comboBox1;
+        private ComboBox SubjectsComboBox;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem aDDSubToolStripMenuItem;
-        private Button button7;
-        private Button button8;
-        private Button button9;
+        private ToolStripMenuItem AddSubjectButton;
+        private Button EditButton;
+        private Button DeleteButton;
+        private Button DoneButton;
         private TextBox textBox_task;
         private TextBox textBox_desk;
         private DateTimePicker dateTimePicker1;
-        private Button button5;
-        private ToolStripMenuItem deleteToolStripMenuItem;
+        private Button AddTaskButton;
+        private ToolStripMenuItem DeleteSubjectButton;
         private DateTimePicker dateTimePicker2;
         private Button button6;
+        private Label label2;
+        private Label label3;
     }
 }

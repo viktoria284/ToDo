@@ -14,7 +14,7 @@ using System.Xml.Linq;
 
 namespace ToDo
 {
-    public partial class Form1 : Form
+    public partial class AddSub : Form
     {
         DataBase database = new DataBase();
          
@@ -27,17 +27,12 @@ namespace ToDo
             InitializeComponent();
             CenterToParent();
         }
-         
-
-         
 
         // Используйте свойство для доступа к элементу
-         
-        private void button1_Click(object sender, EventArgs e)
+
+        private void AddSubjectButtonClick(object sender, EventArgs e)
         {
-
-
-            database.openConnection();
+            database.OpenConnection();
 
             // Получаем данные из текстовых полей формы
             var name = textBox1.Text;
@@ -53,7 +48,7 @@ namespace ToDo
             var addQuery = "INSERT INTO subjects (subject_name, type_subject, teachers, requirements, notes) " +
                            "VALUES (@name, @type, @teacher, @req, @notes)";
 
-            using (var command = new SqlCommand(addQuery, database.getConnection()))
+            using (var command = new SqlCommand(addQuery, database.GetConnection()))
             {
                 // Добавляем параметры с правильными именами
                 command.Parameters.AddWithValue("@name", subject.Name);
@@ -76,7 +71,7 @@ namespace ToDo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-             
+
         }
     }
 }
