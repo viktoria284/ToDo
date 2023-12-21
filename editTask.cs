@@ -88,5 +88,10 @@ namespace ToDo
         {
 
         }
+
+        private void editTask_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

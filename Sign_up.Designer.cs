@@ -79,7 +79,7 @@
             this.Controls.Add(this.textBox_login);
             this.Name = "Sign_up";
             this.Text = "Sign_up";
-            this.Load += new System.EventHandler(this.Sign_up_Load);
+          //  this.Load += new System.EventHandler(this.Sign_up_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

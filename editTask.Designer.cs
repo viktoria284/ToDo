@@ -28,116 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox_id = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            AcceptChangesButton = new Button();
-            textBoxtask = new TextBox();
-            textBox_des = new TextBox();
-            checkBox1 = new CheckBox();
-            label2 = new Label();
-            label3 = new Label();
-            SuspendLayout();
+            this.textBox_id = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.AcceptChangesButton = new System.Windows.Forms.Button();
+            this.textBoxtask = new System.Windows.Forms.TextBox();
+            this.textBox_des = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // textBox_id
             // 
-            textBox_id.Location = new Point(14, 1);
-            textBox_id.Margin = new Padding(3, 4, 3, 4);
-            textBox_id.Name = "textBox_id";
-            textBox_id.Size = new Size(114, 27);
-            textBox_id.TabIndex = 0;
-            textBox_id.Visible = false;
+            this.textBox_id.Location = new System.Drawing.Point(12, 1);
+            this.textBox_id.Name = "textBox_id";
+            this.textBox_id.Size = new System.Drawing.Size(100, 23);
+            this.textBox_id.TabIndex = 0;
+            this.textBox_id.Visible = false;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(125, 238);
-            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(220, 27);
-            dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.Location = new System.Drawing.Point(109, 178);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(193, 23);
+            this.dateTimePicker1.TabIndex = 1;
             // 
             // AcceptChangesButton
             // 
-            AcceptChangesButton.Anchor = AnchorStyles.Bottom;
-            AcceptChangesButton.Location = new Point(159, 330);
-            AcceptChangesButton.Margin = new Padding(3, 4, 3, 4);
-            AcceptChangesButton.Name = "AcceptChangesButton";
-            AcceptChangesButton.Size = new Size(164, 31);
-            AcceptChangesButton.TabIndex = 2;
-            AcceptChangesButton.Text = "Accept changes";
-            AcceptChangesButton.UseVisualStyleBackColor = true;
-            AcceptChangesButton.Click += AcceptChangesButtonClick;
+            this.AcceptChangesButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.AcceptChangesButton.Location = new System.Drawing.Point(139, 248);
+            this.AcceptChangesButton.Name = "AcceptChangesButton";
+            this.AcceptChangesButton.Size = new System.Drawing.Size(144, 23);
+            this.AcceptChangesButton.TabIndex = 2;
+            this.AcceptChangesButton.Text = "Accept changes";
+            this.AcceptChangesButton.UseVisualStyleBackColor = true;
             // 
             // textBoxtask
             // 
-            textBoxtask.Location = new Point(125, 73);
-            textBoxtask.Margin = new Padding(3, 4, 3, 4);
-            textBoxtask.Multiline = true;
-            textBoxtask.Name = "textBoxtask";
-            textBoxtask.Size = new Size(219, 47);
-            textBoxtask.TabIndex = 3;
+            this.textBoxtask.Location = new System.Drawing.Point(109, 55);
+            this.textBoxtask.Multiline = true;
+            this.textBoxtask.Name = "textBoxtask";
+            this.textBoxtask.Size = new System.Drawing.Size(192, 36);
+            this.textBoxtask.TabIndex = 3;
             // 
             // textBox_des
             // 
-            textBox_des.Location = new Point(125, 163);
-            textBox_des.Margin = new Padding(3, 4, 3, 4);
-            textBox_des.Multiline = true;
-            textBox_des.Name = "textBox_des";
-            textBox_des.Size = new Size(220, 54);
-            textBox_des.TabIndex = 4;
+            this.textBox_des.Location = new System.Drawing.Point(109, 122);
+            this.textBox_des.Multiline = true;
+            this.textBox_des.Name = "textBox_des";
+            this.textBox_des.Size = new System.Drawing.Size(193, 42);
+            this.textBox_des.TabIndex = 4;
             // 
             // checkBox1
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(203, 283);
-            checkBox1.Margin = new Padding(3, 4, 3, 4);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(67, 24);
-            checkBox1.TabIndex = 6;
-            checkBox1.Text = "Done";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(178, 212);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(54, 19);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Done";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top;
-            label2.AutoSize = true;
-            label2.Font = new Font("Rockwell", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(125, 43);
-            label2.Name = "label2";
-            label2.Size = new Size(110, 26);
-            label2.TabIndex = 29;
-            label2.Text = "Edit task:";
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(109, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 24);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Edit task:";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(125, 137);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 22);
-            label3.TabIndex = 30;
-            label3.Text = "Description:";
-            label3.Click += label3_Click;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(109, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Description:";
             // 
-            // Form2
+            // editTask
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(475, 395);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(checkBox1);
-            Controls.Add(textBox_des);
-            Controls.Add(textBoxtask);
-            Controls.Add(AcceptChangesButton);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox_id);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "Form2";
-            Text = "Form2";
-            Load += Form2_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(416, 296);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.textBox_des);
+            this.Controls.Add(this.textBoxtask);
+            this.Controls.Add(this.AcceptChangesButton);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.textBox_id);
+            this.Name = "editTask";
+            this.Text = "Form2";
+            this.Load += new System.EventHandler(this.editTask_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

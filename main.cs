@@ -43,9 +43,12 @@ namespace ToDo
         string Id_done;
         string Id_subs;
         Task TASK;
-
+ 
         private User user;
-        public main(User user)
+        public main(User user);
+ 
+        public Main()
+ 
         {
             this.user = user;
             InitializeComponent();
@@ -86,12 +89,20 @@ namespace ToDo
         {
 
             dataGridView1.Columns.Add("subject_name", "id");
+ 
 
             dataGridView1.Columns.Add("subject_name", "Предмет");
             dataGridView1.Columns.Add("type_subject", "Тип");
             dataGridView1.Columns.Add("teachers", "Преподователь");
             dataGridView1.Columns.Add("requirements", "Требования");
             dataGridView1.Columns.Add("notes", "Заметки");
+ 
+            dataGridView1.Columns.Add("subject_name", "subject_name");
+            dataGridView1.Columns.Add("type_subject", "type_subject");
+            dataGridView1.Columns.Add("teachers", "teachers");
+            dataGridView1.Columns.Add("requirements", "requirements");
+            dataGridView1.Columns.Add("notes", "notes");
+ 
 
         }
         private void CreateColums_2()
@@ -267,9 +278,15 @@ namespace ToDo
 
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
+ 
                  TASK = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
 
                 Id_done = row.Cells[0].Value.ToString();
+ 
+                TASK = new Task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
+
+
+ 
 
 
             }
@@ -286,6 +303,7 @@ namespace ToDo
             CreateColums_2();
             RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2); FillComboBox();
+ 
 
             dataGridView1.Columns[0].Visible = false;
             dataGridView2.Columns[0].Visible = false;
@@ -507,6 +525,16 @@ namespace ToDo
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_Load_1(object sender, EventArgs e)
         {
 
         }
