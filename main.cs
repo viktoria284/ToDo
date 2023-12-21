@@ -39,18 +39,40 @@ namespace ToDo
         string predmet;
         DataBase database = new DataBase();
         int selectedRow; int selectedRow2;
-        int Id_done;
+        string Id_done;
         string Id_subs;
         task TASK;
 
-
-        public main()
+        private User user;
+        public main(User user)
         {
+            this.user = user;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             timer = new System.Timers.Timer();
             timer.Interval = 1000; // 1 секунда
             timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Tick);
+            this.user = user;
+
+            if (user.Access == 1) {
+                dateTimePicker1.Visible = true;
+
+                button7.Visible = true; 
+                button8.Visible = true;
+                textBox_desk.Visible = true;
+                textBox_task.Visible = true;
+                button5.Visible = true;
+            }
+            else
+            {
+                dateTimePicker1.Visible = false;
+                textBox_desk.Visible = false;
+                textBox_task.Visible = false;
+                button5.Visible = false;
+                button7.Visible = false;  
+                button8.Visible = false;
+            }
+
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -64,22 +86,22 @@ namespace ToDo
 
             dataGridView1.Columns.Add("subject_name", "id");
 
-            dataGridView1.Columns.Add("subject_name", "subject_name");
-            dataGridView1.Columns.Add("type_subject", "type_subject");
-            dataGridView1.Columns.Add("teachers", "teachers");
-            dataGridView1.Columns.Add("requirements", "requirements");
-            dataGridView1.Columns.Add("notes", "notes");
+            dataGridView1.Columns.Add("subject_name", "Предмет");
+            dataGridView1.Columns.Add("type_subject", "Тип");
+            dataGridView1.Columns.Add("teachers", "Преподователь");
+            dataGridView1.Columns.Add("requirements", "Требования");
+            dataGridView1.Columns.Add("notes", "Заметки");
 
         }
         private void CreateColums_2()
         {
             dataGridView2.Columns.Add("id_task", "id_task");
-            dataGridView2.Columns.Add("task", "task");
-            dataGridView2.Columns.Add("subject_name", "subject_name");
+            dataGridView2.Columns.Add("task", "Задача");
+            dataGridView2.Columns.Add("subject_name", "Предмет");
 
-            dataGridView2.Columns.Add("task_desc", "task_desc");
-            dataGridView2.Columns.Add("deadline", "deadline");
-            dataGridView2.Columns.Add("isdone", "isdone");
+            dataGridView2.Columns.Add("task_desc", "Описание");
+            dataGridView2.Columns.Add("deadline", "Срок выполненря");
+           dataGridView2.Columns.Add("isdone", "isdone");
 
         }
         private void ReadSingleRow(DataGridView dvg, IDataRecord record)
@@ -158,7 +180,7 @@ namespace ToDo
 
         private void RefreshDataGrid(DataGridView dvg)
         {
-
+             
             dvg.Rows.Clear();
             string queryString;
             string selectedValue = comboBox1.SelectedValue.ToString();
@@ -245,8 +267,8 @@ namespace ToDo
                 DataGridViewRow row = dataGridView2.Rows[selectedRow2];
 
                  TASK = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
-                
-                
+
+                Id_done = row.Cells[0].Value.ToString();
 
 
             }
@@ -257,13 +279,15 @@ namespace ToDo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+             
             FillComboBox();
             CreateColums();
             CreateColums_2();
            RefreshDataGrid(dataGridView1);
             RefreshDataGrid2(dataGridView2); FillComboBox();
-            
 
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView2.Columns[0].Visible = false;
 
 
 
