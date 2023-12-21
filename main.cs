@@ -42,7 +42,7 @@ namespace ToDo
         string Id_done;
         string Id_subs;
         task TASK;
-
+        bool statuss;
         private User user;
         public main(User user)
         {
@@ -56,6 +56,7 @@ namespace ToDo
 
             if (user.Access == 1) {
                 dateTimePicker1.Visible = true;
+                aDDSubToolStripMenuItem.Visible = false;
 
                 button7.Visible = true; 
                 button8.Visible = true;
@@ -65,6 +66,7 @@ namespace ToDo
             }
             else
             {
+                aDDSubToolStripMenuItem.Visible = false;
                 dateTimePicker1.Visible = false;
                 textBox_desk.Visible = false;
                 textBox_task.Visible = false;
@@ -254,7 +256,7 @@ namespace ToDo
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedRow2 = e.RowIndex;
-
+           
 
 
 
@@ -269,7 +271,7 @@ namespace ToDo
                  TASK = new task(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), (bool)row.Cells[5].Value);
 
                 Id_done = row.Cells[0].Value.ToString();
-
+                statuss = (bool)row.Cells[5].Value;
 
             }
 
@@ -431,9 +433,19 @@ namespace ToDo
 
         private void button9_Click(object sender, EventArgs e)
         {
+            string  changequery;
+            if (statuss ==false )
+            {
+                  changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
+            }
+            else
+            {
+                  changequery = $"update tasks set isdone ='{false}' where id_task = '{Id_done}' ";
 
 
-            var changequery = $"update tasks set isdone ='{true}' where id_task = '{Id_done}' ";
+            }
+
+
             database.openConnection();
             var command = new SqlCommand(changequery, database.getConnection());
 
