@@ -54,6 +54,7 @@
             button6 = new Button();
             label2 = new Label();
             label3 = new Label();
+            button10 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             menuStrip1.SuspendLayout();
@@ -327,12 +328,25 @@
             label3.TabIndex = 28;
             label3.Text = "Description:";
             // 
+            // button10
+            // 
+            button10.BackColor = Color.White;
+            button10.Location = new Point(948, 242);
+            button10.Margin = new Padding(3, 4, 3, 4);
+            button10.Name = "button10";
+            button10.Size = new Size(107, 40);
+            button10.TabIndex = 29;
+            button10.Text = "All";
+            button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
             ClientSize = new Size(1128, 845);
+            Controls.Add(button10);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(button6);
@@ -392,5 +406,6 @@
         private Label label2;
         private Label label3;
         private Button button10;
+        private Button button1;
     }
 }
