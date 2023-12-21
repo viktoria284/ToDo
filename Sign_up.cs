@@ -20,6 +20,7 @@ namespace ToDo
         public Sign_up()
         {
             InitializeComponent();
+            CenterToParent();
         }
 
         private void button1_Click_1(object sender, EventArgs e)

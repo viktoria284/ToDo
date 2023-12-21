@@ -19,6 +19,7 @@ namespace ToDo
         public login()
         {
             InitializeComponent();
+            CenterToParent();
         }
 
         private void login_Load(object sender, EventArgs e)
