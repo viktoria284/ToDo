@@ -16,11 +16,15 @@ namespace ToDo
 {
     public partial class Sign_up : Form
     {
+
+
         DataBase database = new DataBase();
         public Sign_up()
         {
             InitializeComponent();
             CenterToParent();
+            textBox_password.PasswordChar = '*';
+            textBox_password2.PasswordChar = '*';
         }
         public string HashPassword(string password)
         {
@@ -33,7 +37,7 @@ namespace ToDo
         private void SignUpButton_Click(object sender, EventArgs e)
         {
             string login = textBox_login.Text;
-            string password =  textBox_password.Text;
+            string password = textBox_password.Text;
 
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
@@ -46,16 +50,21 @@ namespace ToDo
                 MessageBox.Show("Логин должен содержать от 5 до 50 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            if (password !=textBox_password2.Text)
+
+            if (password.Length > 50)
+            {
+                MessageBox.Show("Пароль не должен содержать более 50 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (password != textBox_password2.Text)
             {
                 MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (password.Length < 5 || password.Length > 15)
+            if (!CheckPasswordStrength(password))
             {
-                MessageBox.Show("Пароль должен содержать от 5 до 15 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -66,7 +75,7 @@ namespace ToDo
             }
 
             int access = checkBox1.Checked ? 1 : 0;
-            password =  HashPassword( textBox_password.Text);
+            password = HashPassword(textBox_password.Text);
             string querystring = $"INSERT INTO register_2 (login_user, password_user, access) VALUES ('{login}', '{password}', '{access}')";
 
             SqlCommand command = new SqlCommand(querystring, database.GetConnection());
@@ -120,9 +129,42 @@ namespace ToDo
             }
         }
 
+        private bool CheckPasswordStrength(string password)
+        {
+            if (password.Length < 8)
+            {
+                MessageBox.Show("Пароль слишком короткий. Пароль должен содержать не менее 8 символов.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!password.Any(char.IsDigit))
+            {
+                MessageBox.Show("Пароль должен содержать хотя бы одну цифру.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!password.Any(char.IsUpper))
+            {
+                MessageBox.Show("Пароль должен содержать хотя бы одну букву в верхнем регистре.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!password.Any(char.IsLower))
+            {
+                MessageBox.Show("Пароль должен содержать хотя бы одну букву в нижнем регистре.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+
         private void Sign_up_Load(object sender, EventArgs e)
         {
-
+            if (ClassR.acf == 1)
+            {
+                checkBox1.Visible = true;
+            }
         }
 
         private void LogInPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

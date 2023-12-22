@@ -50,6 +50,7 @@
             label2 = new Label();
             label3 = new Label();
             button10 = new Button();
+            regforvikiToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             menuStrip1.SuspendLayout();
@@ -147,7 +148,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddSubjectButton, DeleteSubjectButton });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddSubjectButton, DeleteSubjectButton, regforvikiToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(44, 24);
             fileToolStripMenuItem.Text = "file";
@@ -155,14 +156,14 @@
             // AddSubjectButton
             // 
             AddSubjectButton.Name = "AddSubjectButton";
-            AddSubjectButton.Size = new Size(185, 26);
+            AddSubjectButton.Size = new Size(224, 26);
             AddSubjectButton.Text = "add subject";
             AddSubjectButton.Click += AddSubjectButtonClick;
             // 
             // DeleteSubjectButton
             // 
             DeleteSubjectButton.Name = "DeleteSubjectButton";
-            DeleteSubjectButton.Size = new Size(185, 26);
+            DeleteSubjectButton.Size = new Size(224, 26);
             DeleteSubjectButton.Text = "delete subject";
             DeleteSubjectButton.Click += DeleteSubjectButtonClick;
             // 
@@ -281,6 +282,13 @@
             button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click;
             // 
+            // regforvikiToolStripMenuItem
+            // 
+            regforvikiToolStripMenuItem.Name = "regforvikiToolStripMenuItem";
+            regforvikiToolStripMenuItem.Size = new Size(224, 26);
+            regforvikiToolStripMenuItem.Text = "reg_for_viki";
+            regforvikiToolStripMenuItem.Click += regforvikiToolStripMenuItem_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -338,5 +346,6 @@
         private Label label3;
         private Button button10;
         private Button button1;
+        private ToolStripMenuItem regforvikiToolStripMenuItem;
     }
 }

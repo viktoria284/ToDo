@@ -138,6 +138,7 @@
             checkBox1.TabIndex = 41;
             checkBox1.Text = "Admin";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.Visible = false;
             // 
             // Sign_up
             // 

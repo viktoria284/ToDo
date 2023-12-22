@@ -77,7 +77,7 @@ namespace ToDo
 
         }
 
-       private void ALLALL()
+        private void ALLALL()
         {
             DataGridView dvg = dataGridView1;
             dvg.Rows.Clear();
@@ -118,7 +118,7 @@ namespace ToDo
             }
             reader2.Close();
         }
-    
+
 
         private void CreateColums()
         {
@@ -412,7 +412,7 @@ namespace ToDo
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            database.CloseConnection(); 
+            database.CloseConnection();
             RefreshDataGrid2(dataGridView2);
         }
 
@@ -517,5 +517,11 @@ namespace ToDo
             reader2.Close();
         }
 
+        private void regforvikiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassR.acf = 1;
+            Sign_up sig = new Sign_up();
+            sig.ShowDialog();
+        }
     }
 }
