@@ -307,12 +307,25 @@ namespace ToDo
 
         private void AddTaskButtonClick(object sender, EventArgs e)
         {
-            // string selectedValue =  comboBox1.SelectedValue.ToString();
+            string task = textBox_task.Text.Trim();
+            string desc = textBox_desk.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(textBox_task.Text))
+            {
+                MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (task.Length > 50)
+            {
+                MessageBox.Show("Длина задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             database.OpenConnection();
 
-            var task = textBox_task.Text;
+            //var task = textBox_task.Text;
             var name = Id_subs;
-            var desc = textBox_desk.Text;
+            //var desc = textBox_desk.Text;
             bool lw = false;
             var temess = dateTimePicker1.Value;
             var addQuery = "INSERT INTO tasks (task,subject_name, task_desc, deadline,isdone) " +
@@ -352,8 +365,8 @@ namespace ToDo
 
             command.ExecuteNonQuery();
             MessageBox.Show("Запись успешно изменена!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            database.CloseConnection();
-            update();
+            database.CloseConnection(); 
+            RefreshDataGrid2(dataGridView2);
         }
 
         private void DeleteSubjectButtonClick(object sender, EventArgs e)

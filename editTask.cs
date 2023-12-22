@@ -44,6 +44,12 @@ namespace ToDo
 
         private void AcceptChangesButtonClick(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxtask.Text))
+            {
+                MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var id = textBox_id.Text;
             var name = textBoxtask.Text;
 
