@@ -28,14 +28,45 @@ namespace ToDo
 
         private void AddSubjectButtonClick(object sender, EventArgs e)
         {
-            database.OpenConnection();
-
             // Получаем данные из текстовых полей формы
             var name = textBox1.Text;
             var type = textBox2.Text;
             var teacher = textBox3.Text;
             var req = textBox4.Text;
             var notes = textBox5.Text;
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Поле предмета не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (name.Length > 50 || type.Length > 50 || teacher.Length > 50 || notes.Length > 50 || req.Length > 250)
+            {
+                if (name.Length > 50)
+                {
+                    MessageBox.Show("Длина названия предмета не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (type.Length > 50)
+                {
+                    MessageBox.Show("Длина типа предмета не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (teacher.Length > 50)
+                {
+                    MessageBox.Show("Длина имени преподавателя не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (notes.Length > 50)
+                {
+                    MessageBox.Show("Длина заметок не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (req.Length > 250)
+                {
+                    MessageBox.Show("Длина требований не должна превышать 250 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return;
+            }
+
+            database.OpenConnection();
 
             // Создаем экземпляр класса Subject
             Subject subject = new Subject(name, type, teacher, req, notes);

@@ -34,6 +34,18 @@ namespace ToDo
             string Username = textBox_login.Text;
             string Password = textBox_password.Text;
 
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Логин и пароль не могут быть пустыми!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (Username.Length > 50 || Password.Length > 50)
+            {
+                MessageBox.Show("Длина логина и пароля не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             SqlDataAdapter adapetr = new SqlDataAdapter();
             DataTable table = new DataTable();
 

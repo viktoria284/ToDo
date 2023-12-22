@@ -24,72 +24,77 @@ namespace ToDo
 
         private void SignUpButton_Click(object sender, EventArgs e)
         {
+            string login = textBox_login.Text;
+            string password = textBox_password.Text;
 
-            if (checkuser() == false)
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-                if (textBox_password.Text == "" || textBox_login.Text == "" || (textBox_password.Text == "" && textBox_login.Text == ""))
-                {
-                    MessageBox.Show("Заполните все поля", "error");
-                }
-                else if (textBox_password.Text != textBox_password2.Text)
-                {
-                    MessageBox.Show("Пароль не совпадает", "error");
-                }
-                else if (textBox_password.Text.Length < 5 || textBox_password.Text.Length > 10)
-                {
-                    MessageBox.Show("Пароль слишком короткий", "error");
-                }
-                else
-                {
-                    var login = textBox_login.Text;
-                    var password = textBox_password.Text;
-                    int access;
-                    if (checkBox1.Checked == true)
-                    {
-                        access = 1;
-                    }
-                    else
-                    {
-                        access = 0;
-                    }
-
-
-                    string querystring = $"insert into register_2(login_user,password_user,access) values ('{login}', '{password}','{access}')";
-
-                    SqlCommand command = new SqlCommand(querystring, database.GetConnection());
-
-
-                    database.OpenConnection();
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("Аккаунт успешно создан", "succses!");
-                        login frm_login = new login();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("error");
-                    }
-                    database.CloseConnection();
-                }
-            }
-            else
-            {
+                MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            if (login.Length < 5 || login.Length > 50)
+            {
+                MessageBox.Show("Логин должен содержать от 5 до 50 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            if (password != textBox_password2.Text)
+            {
+                MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (password.Length < 5 || password.Length > 15)
+            {
+                MessageBox.Show("Пароль должен содержать от 5 до 15 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (checkUser(login, password))
+            {
+                MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int access = checkBox1.Checked ? 1 : 0;
+
+            string querystring = $"INSERT INTO register_2 (login_user, password_user, access) VALUES ('{login}', '{password}', '{access}')";
+
+            SqlCommand command = new SqlCommand(querystring, database.GetConnection());
+
+            try
+            {
+                database.OpenConnection();
+
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Аккаунт успешно создан", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    login frm_login = new login();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при создании аккаунта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                database.CloseConnection();
+            }
         }
-        private Boolean checkuser()
-        {
-            var loginUser = textBox_login.Text;
-            var password = textBox_password.Text;
 
+        private Boolean checkUser(string loginUser, string password)
+        {
             SqlDataAdapter adapter = new SqlDataAdapter();
             DataTable table = new DataTable();
 
 
-            string qerystring = $"select login_user,password_user,access from register_2 where login_user = '{loginUser}' and  password_user='{password}'";
+            string qerystring = $"SELECT login_user,password_user,access from register_2 where login_user = '{loginUser}' and  password_user='{password}'";
 
             SqlCommand command = new SqlCommand(qerystring, database.GetConnection());
 
@@ -98,7 +103,7 @@ namespace ToDo
 
             if (table.Rows.Count > 0)
             {
-                MessageBox.Show("Пользователь уже существует");
+                MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return true;
             }
             else

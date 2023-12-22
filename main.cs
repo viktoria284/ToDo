@@ -310,22 +310,26 @@ namespace ToDo
             string task = textBox_task.Text.Trim();
             string desc = textBox_desk.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(textBox_task.Text))
+            if (string.IsNullOrWhiteSpace(task) || task.Length > 50 || desc.Length > 50)
             {
-                MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (string.IsNullOrWhiteSpace(task))
+                {
+                    MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (task.Length > 50)
+                {
+                    MessageBox.Show("Длина задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (desc.Length > 50)
+                {
+                    MessageBox.Show("Длина описания задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return;
             }
 
-            if (task.Length > 50)
-            {
-                MessageBox.Show("Длина задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             database.OpenConnection();
 
-            //var task = textBox_task.Text;
             var name = Id_subs;
-            //var desc = textBox_desk.Text;
             bool lw = false;
             var temess = dateTimePicker1.Value;
             var addQuery = "INSERT INTO tasks (task,subject_name, task_desc, deadline,isdone) " +

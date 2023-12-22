@@ -31,7 +31,7 @@ namespace ToDo
             textBoxtask.Text = TASK.TaskName;
             textBox_des.Text = TASK.TaskDesc;
 
-            // Assuming TextBox_subject is a ComboBox
+            // assuming TextBox_subject is a ComboBox
             if (TASK.isDone == true)
             {
                 checkBox1.Checked = true;
@@ -44,16 +44,29 @@ namespace ToDo
 
         private void AcceptChangesButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxtask.Text))
+            string name = textBoxtask.Text.Trim();
+            string des = textBox_des.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(name) || name.Length > 50 || des.Length > 50)
             {
-                MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show("Поле задачи не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (name.Length > 50)
+                {
+                    MessageBox.Show("Длина задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (des.Length > 50)
+                {
+                    MessageBox.Show("Длина описания задачи не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return;
             }
 
             var id = textBox_id.Text;
-            var name = textBoxtask.Text;
-
-            var des = textBox_des.Text;
+            //var name = textBoxtask.Text;
+            //var des = textBox_des.Text;
             var times = dateTimePicker1.Text;
             var don = checkBox1.Checked.ToString();
 
