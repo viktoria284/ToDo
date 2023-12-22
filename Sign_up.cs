@@ -45,7 +45,7 @@ namespace ToDo
                 return;
             }
 
-            if (checkUser(login, password))
+            if (checkUser(login))
             {
                 MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -105,28 +105,19 @@ namespace ToDo
             }
         }
 
-        private Boolean checkUser(string loginUser, string password)
+        private bool checkUser(string login)
         {
             SqlDataAdapter adapter = new SqlDataAdapter();
             DataTable table = new DataTable();
 
+            string queryString = $"SELECT COUNT(*) FROM register_2 WHERE login_user = '{login}'";
 
-            string qerystring = $"SELECT login_user,password_user,access FROM register_2 WhHERE login_user = '{loginUser}' and  password_user='{password}'";
-
-            SqlCommand command = new SqlCommand(qerystring, database.GetConnection());
+            SqlCommand command = new SqlCommand(queryString, database.GetConnection());
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count > 0)
-            {
-                MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (table.Rows[0][0] != DBNull.Value && (int)table.Rows[0][0] > 0);
         }
 
         private bool CheckPasswordStrength(string password)
