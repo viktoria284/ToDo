@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,11 +22,18 @@ namespace ToDo
             InitializeComponent();
             CenterToParent();
         }
-
+        public string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
         private void SignUpButton_Click(object sender, EventArgs e)
         {
             string login = textBox_login.Text;
-            string password = textBox_password.Text;
+            string password =  textBox_password.Text;
 
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
@@ -38,8 +46,8 @@ namespace ToDo
                 MessageBox.Show("Логин должен содержать от 5 до 50 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (password != textBox_password2.Text)
+            
+            if (password !=textBox_password2.Text)
             {
                 MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -58,7 +66,7 @@ namespace ToDo
             }
 
             int access = checkBox1.Checked ? 1 : 0;
-
+            password =  HashPassword( textBox_password.Text);
             string querystring = $"INSERT INTO register_2 (login_user, password_user, access) VALUES ('{login}', '{password}', '{access}')";
 
             SqlCommand command = new SqlCommand(querystring, database.GetConnection());

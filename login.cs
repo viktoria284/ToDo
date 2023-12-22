@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,7 +33,7 @@ namespace ToDo
         private void LogInButton_Click(object sender, EventArgs e)
         {
             string Username = textBox_login.Text;
-            string Password = textBox_password.Text;
+            string Password =textBox_password.Text;
 
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
@@ -40,15 +41,15 @@ namespace ToDo
                 return;
             }
 
-            if (Username.Length > 50 || Password.Length > 50)
-            {
-                MessageBox.Show("Длина логина и пароля не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+           if (Username.Length > 50 || Password.Length > 50)
+           {
+             MessageBox.Show("Длина логина и пароля не должна превышать 50 символов!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               return;
             }
 
             SqlDataAdapter adapetr = new SqlDataAdapter();
             DataTable table = new DataTable();
-
+            Password = HashPassword(textBox_password.Text);
             string querystring = $"select id_user, login_user,password_user,access from register_2 where login_user = '{Username}' AND password_user = '{Password}'";
 
             SqlCommand command = new SqlCommand(querystring, database.GetConnection());
@@ -87,7 +88,14 @@ namespace ToDo
 
             }
         }
-
+        public string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
         private void SignUpPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Sign_up sgn = new Sign_up();

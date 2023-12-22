@@ -77,6 +77,48 @@ namespace ToDo
 
         }
 
+       private void ALLALL()
+        {
+            DataGridView dvg = dataGridView1;
+            dvg.Rows.Clear();
+
+            string queryString = $"select * from subjects  ";
+
+
+            using (SqlCommand command = new SqlCommand(queryString, database.GetConnection()))
+            {
+                database.OpenConnection();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReadSingleRow(dvg, reader);
+                    }
+
+                    reader.Close();
+                }
+
+                database.CloseConnection();
+            }
+            DataGridView dvg2 = dataGridView2;
+
+            dvg2.Rows.Clear();
+
+            string queryStringg = $"select * from tasks ";
+
+            SqlCommand command2 = new SqlCommand(queryStringg, database.GetConnection());
+
+            database.OpenConnection();
+
+            SqlDataReader reader2 = command2.ExecuteReader();
+            while (reader2.Read())
+            {
+                ReadSingleRow2(dvg2, reader2);
+            }
+            reader2.Close();
+        }
+    
 
         private void CreateColums()
         {
@@ -246,6 +288,7 @@ namespace ToDo
 
             dataGridView1.Columns[0].Visible = false;
             dataGridView2.Columns[0].Visible = false;
+            ALLALL();
         }
 
         private void FillComboBox()
@@ -427,6 +470,8 @@ namespace ToDo
                 t = 0;
             }
         }
+
+
 
         private void button10_Click(object sender, EventArgs e)
         {
