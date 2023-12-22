@@ -44,7 +44,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(110, 237);
+            label4.Location = new Point(110, 230);
             label4.Name = "label4";
             label4.Size = new Size(174, 22);
             label4.TabIndex = 37;
@@ -54,7 +54,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(110, 167);
+            label1.Location = new Point(110, 160);
             label1.Name = "label1";
             label1.Size = new Size(103, 22);
             label1.TabIndex = 36;
@@ -64,15 +64,15 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(110, 96);
+            label3.Location = new Point(110, 89);
             label3.Name = "label3";
-            label3.Size = new Size(69, 22);
+            label3.Size = new Size(67, 22);
             label3.TabIndex = 35;
-            label3.Text = "Email:";
+            label3.Text = "Login:";
             // 
             // textBox_password2
             // 
-            textBox_password2.Location = new Point(110, 263);
+            textBox_password2.Location = new Point(110, 256);
             textBox_password2.Margin = new Padding(3, 4, 3, 4);
             textBox_password2.Name = "textBox_password2";
             textBox_password2.Size = new Size(227, 27);
@@ -80,7 +80,7 @@
             // 
             // textBox_password
             // 
-            textBox_password.Location = new Point(110, 193);
+            textBox_password.Location = new Point(110, 186);
             textBox_password.Margin = new Padding(3, 4, 3, 4);
             textBox_password.Name = "textBox_password";
             textBox_password.Size = new Size(227, 27);
@@ -88,7 +88,7 @@
             // 
             // textBox_login
             // 
-            textBox_login.Location = new Point(110, 122);
+            textBox_login.Location = new Point(110, 115);
             textBox_login.Margin = new Padding(3, 4, 3, 4);
             textBox_login.Name = "textBox_login";
             textBox_login.Size = new Size(227, 27);
@@ -99,7 +99,7 @@
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Rockwell", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(169, 42);
+            label2.Location = new Point(180, 35);
             label2.Name = "label2";
             label2.Size = new Size(96, 27);
             label2.TabIndex = 38;
@@ -109,18 +109,19 @@
             // 
             SignUpButton.BackColor = Color.White;
             SignUpButton.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            SignUpButton.Location = new Point(110, 320);
+            SignUpButton.Location = new Point(110, 340);
             SignUpButton.Margin = new Padding(3, 4, 3, 4);
             SignUpButton.Name = "SignUpButton";
             SignUpButton.Size = new Size(220, 40);
             SignUpButton.TabIndex = 39;
             SignUpButton.Text = "Sign up";
             SignUpButton.UseVisualStyleBackColor = false;
+            SignUpButton.Click += SignUpButton_Click;
             // 
             // LogInPage
             // 
             LogInPage.AutoSize = true;
-            LogInPage.Location = new Point(146, 373);
+            LogInPage.Location = new Point(146, 393);
             LogInPage.Name = "LogInPage";
             LogInPage.Size = new Size(158, 20);
             LogInPage.TabIndex = 40;
@@ -131,18 +132,18 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(189, 294);
+            checkBox1.Location = new Point(180, 299);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 24);
+            checkBox1.Size = new Size(75, 24);
             checkBox1.TabIndex = 41;
-            checkBox1.Text = "checkBox1";
+            checkBox1.Text = "Admin";
             checkBox1.UseVisualStyleBackColor = true;
             // 
             // Sign_up
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(439, 450);
+            ClientSize = new Size(439, 458);
             Controls.Add(checkBox1);
             Controls.Add(LogInPage);
             Controls.Add(SignUpButton);

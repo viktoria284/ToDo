@@ -43,18 +43,11 @@ namespace ToDo
         Task TASK;
         bool statuss;
         private User user;
-        /*public Main(User user)
-        {
-            this.user = user;
-        }*/
         public Main(User user)
         {
             this.user = user;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            timer = new System.Timers.Timer();
-            timer.Interval = 1000; // 1 секунда
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Tick);
             this.user = user;
 
             if (user.Access == 1)
@@ -78,13 +71,10 @@ namespace ToDo
                 textBox_task.Visible = false;
                 AddSubjectButton.Visible = false;
                 DeleteSubjectButton.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
             }
 
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            TimeSpan elapsed = DateTime.Now - startTime;
-            label1.Text = $"{elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
         }
 
 
@@ -142,7 +132,7 @@ namespace ToDo
                 }
             }
 
-            else if (deadline < dateTimePicker2.Value      /*  dateTimePicker1.Value*/)
+            else if (deadline < dateTimePicker2.Value)
             {
 
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
@@ -151,17 +141,15 @@ namespace ToDo
                 }
             }
 
-            else if (deadline < dateTimePicker2.Value & isdone == true  /* dateTimePicker1.Value.AddDays(1)*/)
+            else if (deadline < dateTimePicker2.Value & isdone == true)
             {
-                // Если срок годности истекает через день, устанавливаем цвет фона строки на желтый.
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
                 {
                     cell.Style.BackColor = Color.Green;
                 }
             }
-            else if (deadline == dateTimePicker2.Value  /* dateTimePicker1.Value.AddDays(1)*/)
+            else if (deadline == dateTimePicker2.Value)
             {
-                // Если срок годности истекает через день, устанавливаем цвет фона строки на желтый.
                 foreach (DataGridViewCell cell in dvg.Rows[dvg.Rows.Count - 1].Cells)
                 {
                     cell.Style.BackColor = Color.Yellow;
@@ -195,16 +183,14 @@ namespace ToDo
                     {
                         ReadSingleRow(dvg, reader);
                     }
-
-                    reader.Close(); // Закрываем DataReader, чтобы освободить ресурсы
+                    reader.Close();
                 }
-
                 database.CloseConnection();
             }
         }
+
         private void RefreshDataGrid2(DataGridView dvg)
         {
-
             dvg.Rows.Clear();
 
             string queryString = $"select * from tasks where subject_name = '{Id_subs}'";
@@ -216,9 +202,7 @@ namespace ToDo
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-
                 ReadSingleRow2(dvg, reader);
-
             }
             reader.Close();
         }
@@ -231,7 +215,6 @@ namespace ToDo
             {
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
 
-
                 Id_subs = (string)row.Cells[1].Value;
             }
             RefreshDataGrid2(dataGridView2);
@@ -240,8 +223,6 @@ namespace ToDo
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedRow2 = e.RowIndex;
-
-
 
             if (selectedRow2 >= 0)
             {
@@ -252,14 +233,10 @@ namespace ToDo
                 Id_done = row.Cells[0].Value.ToString();
                 statuss = (bool)row.Cells[5].Value;
             }
-
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             FillComboBox();
             CreateColums();
             CreateColums_2();
@@ -293,7 +270,6 @@ namespace ToDo
 
                 // Или используем MessageBox.Show для вывода содержимого DataTable
                 // MessageBox.Show(table.Rows.Count.ToString());
-
                 SubjectsComboBox.DisplayMember = "subject_name";
                 SubjectsComboBox.ValueMember = "subject_name";
                 SubjectsComboBox.DataSource = table;
@@ -315,42 +291,6 @@ namespace ToDo
             update();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            startTime = DateTime.Now;
-            timer.Start();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            timer.Stop();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            timer.Stop();
-            SaveTimerDataToFile("D:\\c#web\\ToDo\timersave.txt"); // Specify the file path
-        }
-        private void SaveTimerDataToFile(string filePath)
-        {
-            // Get the elapsed time from the label
-            TimeSpan elapsed = TimeSpan.Parse(label1.Text);
-
-            // Format the data
-            string timerData = $"{DateTime.Now}: Elapsed Time: {elapsed}\r\n";
-
-            try
-            {
-                // Append the data to the specified file
-                File.AppendAllText(filePath, timerData);
-                MessageBox.Show("Timer data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving timer data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
 
         private void AddSubjectButtonClick(object sender, EventArgs e)
         {
@@ -358,11 +298,6 @@ namespace ToDo
             frm.ShowDialog();
             update();
         }
-
-
-
-
-
 
         private void SubjectsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -392,11 +327,9 @@ namespace ToDo
                 command.Parameters.AddWithValue("@time", temess);
                 command.Parameters.AddWithValue("@done", lw);
 
-
                 command.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно создана!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
             database.CloseConnection();
             update();
         }
@@ -414,7 +347,6 @@ namespace ToDo
 
             }
 
-
             database.OpenConnection();
             var command = new SqlCommand(changequery, database.GetConnection());
 
@@ -423,8 +355,6 @@ namespace ToDo
             database.CloseConnection();
             update();
         }
-
-
 
         private void DeleteSubjectButtonClick(object sender, EventArgs e)
         {
@@ -439,8 +369,6 @@ namespace ToDo
             var command = new SqlCommand(DeleteQuery, database.GetConnection());
             command2.ExecuteNonQuery();
             command.ExecuteNonQuery();
-
-
 
             database.CloseConnection();
             update();
@@ -481,7 +409,6 @@ namespace ToDo
                 this.Height = 771;
                 t = 0;
             }
-
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -505,7 +432,7 @@ namespace ToDo
                         ReadSingleRow(dvg, reader);
                     }
 
-                    reader.Close(); // Закрываем DataReader, чтобы освободить ресурсы
+                    reader.Close();
                 }
 
                 database.CloseConnection();
@@ -523,17 +450,9 @@ namespace ToDo
             SqlDataReader reader2 = command2.ExecuteReader();
             while (reader2.Read())
             {
-
                 ReadSingleRow2(dvg2, reader2);
-
             }
             reader2.Close();
-
-
-
-
-
-
         }
 
     }

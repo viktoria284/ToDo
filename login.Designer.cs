@@ -77,9 +77,10 @@
             label3.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(104, 132);
             label3.Name = "label3";
-            label3.Size = new Size(69, 22);
+            label3.Size = new Size(67, 22);
             label3.TabIndex = 43;
-            label3.Text = "Email:";
+            label3.Text = "Login:";
+            label3.Click += label3_Click;
             // 
             // textBox_password
             // 

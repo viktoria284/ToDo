@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 
 namespace ToDo
 {
-    interface Useror
+    public abstract class User
     {
-        int Access { get; set; }
-
-    }
-    public abstract class User: Useror
-    {
-         public int Access { get; set; }
-
-         public string Username { get; set; }
+        public int Access { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public void SetPropertiesFromDatabase(int access, string username, string password)
         {
@@ -24,13 +18,31 @@ namespace ToDo
             Username = username;
             Password = password;
         }
- 
     }
 
-    class SimpleUser : User
+    public class SimpleUser : User
     {
+        public SimpleUser()
+        {
+            Access = 0;
+            Username = string.Empty;
+            Password = string.Empty;
+        }
+    }
+
+    internal class Admin : User
+    {
+        public Admin()
+        {
+            Access = 1;
+            Username = string.Empty;
+            Password = string.Empty;
+        }
+    }
 
 
+    /*class SimpleUser : User
+    {
         public int Access = 0;
 
         // Общие свойства для всех пользователей, если необходимо
@@ -46,16 +58,10 @@ namespace ToDo
         }
     }
    
-        internal class Admin : User
-        {
-            public int Access = 1;
-
-            public string Username { get; set; }
-
-            public string Password { get; set; }
-
-
-        }
-    
-
+    internal class Admin : User 
+    {
+        public int Access = 1;
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }*/
 }

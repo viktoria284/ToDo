@@ -27,9 +27,9 @@ namespace ToDo
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            textBox_id.Text = TASK.TextBox_id;
-            textBoxtask.Text = TASK.TextBox_task;
-            textBox_des.Text = TASK.TextBox_desc;
+            textBox_id.Text = TASK.TaskId;
+            textBoxtask.Text = TASK.TaskName;
+            textBox_des.Text = TASK.TaskDesc;
 
             // Assuming TextBox_subject is a ComboBox
             if (TASK.isDone == true)

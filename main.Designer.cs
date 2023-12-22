@@ -34,10 +34,6 @@
             dataGridView1 = new DataGridView();
             RefreshButton = new Button();
             dataGridView2 = new DataGridView();
-            label1 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
             SubjectsComboBox = new ComboBox();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
@@ -51,7 +47,6 @@
             dateTimePicker1 = new DateTimePicker();
             AddTaskButton = new Button();
             dateTimePicker2 = new DateTimePicker();
-            button6 = new Button();
             label2 = new Label();
             label3 = new Label();
             button10 = new Button();
@@ -80,7 +75,7 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(825, 200);
+            dataGridView1.Size = new Size(700, 200);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
@@ -88,7 +83,7 @@
             // 
             RefreshButton.BackColor = Color.White;
             RefreshButton.BackgroundImageLayout = ImageLayout.Center;
-            RefreshButton.Location = new Point(1001, 194);
+            RefreshButton.Location = new Point(889, 174);
             RefreshButton.Margin = new Padding(3, 4, 3, 4);
             RefreshButton.Name = "RefreshButton";
             RefreshButton.Size = new Size(107, 40);
@@ -123,59 +118,16 @@
             dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(825, 315);
+            dataGridView2.Size = new Size(700, 315);
             dataGridView2.TabIndex = 2;
             dataGridView2.CellClick += dataGridView2_CellClick;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(256, 641);
-            label1.Name = "label1";
-            label1.Size = new Size(136, 41);
-            label1.TabIndex = 4;
-            label1.Text = "00:00:00";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(170, 701);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 61);
-            button2.TabIndex = 5;
-            button2.Text = "Страт";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(271, 701);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 61);
-            button3.TabIndex = 6;
-            button3.Text = "Cтоп";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(371, 701);
-            button4.Margin = new Padding(3, 4, 3, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 61);
-            button4.TabIndex = 7;
-            button4.Text = "Сброс";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // SubjectsComboBox
             // 
             SubjectsComboBox.BackColor = Color.WhiteSmoke;
             SubjectsComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             SubjectsComboBox.FormattingEnabled = true;
-            SubjectsComboBox.Location = new Point(888, 73);
+            SubjectsComboBox.Location = new Point(776, 73);
             SubjectsComboBox.Margin = new Padding(3, 4, 3, 4);
             SubjectsComboBox.Name = "SubjectsComboBox";
             SubjectsComboBox.Size = new Size(220, 36);
@@ -189,7 +141,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(1128, 30);
+            menuStrip1.Size = new Size(1033, 30);
             menuStrip1.TabIndex = 12;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -217,7 +169,7 @@
             // EditButton
             // 
             EditButton.BackColor = Color.White;
-            EditButton.Location = new Point(888, 148);
+            EditButton.Location = new Point(776, 233);
             EditButton.Margin = new Padding(3, 4, 3, 4);
             EditButton.Name = "EditButton";
             EditButton.Size = new Size(107, 40);
@@ -229,7 +181,7 @@
             // DeleteButton
             // 
             DeleteButton.BackColor = Color.White;
-            DeleteButton.Location = new Point(1001, 148);
+            DeleteButton.Location = new Point(889, 233);
             DeleteButton.Margin = new Padding(3, 4, 3, 4);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(107, 40);
@@ -241,18 +193,18 @@
             // DoneButton
             // 
             DoneButton.BackColor = Color.White;
-            DoneButton.Location = new Point(888, 194);
+            DoneButton.Location = new Point(776, 174);
             DoneButton.Margin = new Padding(3, 4, 3, 4);
             DoneButton.Name = "DoneButton";
             DoneButton.Size = new Size(107, 40);
             DoneButton.TabIndex = 17;
-            DoneButton.Text = "Done";
+            DoneButton.Text = "(Un)done";
             DoneButton.UseVisualStyleBackColor = false;
             DoneButton.Click += DoneClick;
             // 
             // textBox_task
             // 
-            textBox_task.Location = new Point(888, 328);
+            textBox_task.Location = new Point(776, 328);
             textBox_task.Margin = new Padding(3, 4, 3, 4);
             textBox_task.Multiline = true;
             textBox_task.Name = "textBox_task";
@@ -261,7 +213,7 @@
             // 
             // textBox_desk
             // 
-            textBox_desk.Location = new Point(888, 432);
+            textBox_desk.Location = new Point(776, 432);
             textBox_desk.Margin = new Padding(3, 4, 3, 4);
             textBox_desk.Multiline = true;
             textBox_desk.Name = "textBox_desk";
@@ -270,7 +222,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(888, 516);
+            dateTimePicker1.Location = new Point(776, 516);
             dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(220, 27);
@@ -279,7 +231,7 @@
             // AddTaskButton
             // 
             AddTaskButton.BackColor = Color.White;
-            AddTaskButton.Location = new Point(911, 573);
+            AddTaskButton.Location = new Point(799, 573);
             AddTaskButton.Margin = new Padding(3, 4, 3, 4);
             AddTaskButton.Name = "AddTaskButton";
             AddTaskButton.Size = new Size(177, 40);
@@ -290,29 +242,18 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(888, 34);
+            dateTimePicker2.Location = new Point(776, 34);
             dateTimePicker2.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(228, 27);
             dateTimePicker2.TabIndex = 24;
             dateTimePicker2.Visible = false;
             // 
-            // button6
-            // 
-            button6.Location = new Point(26, 632);
-            button6.Margin = new Padding(3, 4, 3, 4);
-            button6.Name = "button6";
-            button6.Size = new Size(26, 31);
-            button6.TabIndex = 26;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click_1;
-            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Rockwell", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(888, 298);
+            label2.Location = new Point(776, 298);
             label2.Name = "label2";
             label2.Size = new Size(116, 26);
             label2.TabIndex = 27;
@@ -322,7 +263,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Rockwell", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(888, 406);
+            label3.Location = new Point(776, 406);
             label3.Name = "label3";
             label3.Size = new Size(122, 22);
             label3.TabIndex = 28;
@@ -331,7 +272,7 @@
             // button10
             // 
             button10.BackColor = Color.White;
-            button10.Location = new Point(948, 242);
+            button10.Location = new Point(889, 117);
             button10.Margin = new Padding(3, 4, 3, 4);
             button10.Name = "button10";
             button10.Size = new Size(107, 40);
@@ -345,11 +286,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(1128, 845);
+            ClientSize = new Size(1033, 646);
             Controls.Add(button10);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(button6);
             Controls.Add(dateTimePicker2);
             Controls.Add(AddTaskButton);
             Controls.Add(dateTimePicker1);
@@ -359,10 +299,6 @@
             Controls.Add(DeleteButton);
             Controls.Add(EditButton);
             Controls.Add(SubjectsComboBox);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(label1);
             Controls.Add(dataGridView2);
             Controls.Add(RefreshButton);
             Controls.Add(dataGridView1);
@@ -385,10 +321,6 @@
         private DataGridView dataGridView1;
         private Button RefreshButton;
         private DataGridView dataGridView2;
-        private Label label1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
         private ComboBox SubjectsComboBox;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
@@ -402,7 +334,6 @@
         private Button AddTaskButton;
         private ToolStripMenuItem DeleteSubjectButton;
         private DateTimePicker dateTimePicker2;
-        private Button button6;
         private Label label2;
         private Label label3;
         private Button button10;

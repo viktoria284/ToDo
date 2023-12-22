@@ -15,7 +15,6 @@ namespace ToDo
 {
     public partial class Sign_up : Form
     {
-
         DataBase database = new DataBase();
         public Sign_up()
         {
@@ -23,30 +22,25 @@ namespace ToDo
             CenterToParent();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void SignUpButton_Click(object sender, EventArgs e)
         {
 
             if (checkuser() == false)
             {
-
-
-
-
                 if (textBox_password.Text == "" || textBox_login.Text == "" || (textBox_password.Text == "" && textBox_login.Text == ""))
                 {
-                    MessageBox.Show("Заполните все поля", "errore");
+                    MessageBox.Show("Заполните все поля", "error");
                 }
                 else if (textBox_password.Text != textBox_password2.Text)
                 {
-                    MessageBox.Show("Пароль не совпадает", "errore");
+                    MessageBox.Show("Пароль не совпадает", "error");
                 }
                 else if (textBox_password.Text.Length < 5 || textBox_password.Text.Length > 10)
                 {
-                    MessageBox.Show("Длина пароля что то там", "errore");
+                    MessageBox.Show("Пароль слишком короткий", "error");
                 }
                 else
                 {
-
                     var login = textBox_login.Text;
                     var password = textBox_password.Text;
                     int access;
@@ -71,17 +65,12 @@ namespace ToDo
                         MessageBox.Show("Аккаунт успешно создан", "succses!");
                         login frm_login = new login();
                         this.Hide();
-
-
-
                     }
                     else
                     {
-                        MessageBox.Show("errore");
+                        MessageBox.Show("error");
                     }
                     database.CloseConnection();
-
-
                 }
             }
             else
@@ -131,6 +120,5 @@ namespace ToDo
             //log_in.Show();
 
         }
-
     }
 }

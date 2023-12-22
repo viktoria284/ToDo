@@ -58,7 +58,7 @@
             // AcceptChangesButton
             // 
             AcceptChangesButton.Anchor = AnchorStyles.Bottom;
-            AcceptChangesButton.Location = new Point(159, 330);
+            AcceptChangesButton.Location = new Point(144, 325);
             AcceptChangesButton.Margin = new Padding(3, 4, 3, 4);
             AcceptChangesButton.Name = "AcceptChangesButton";
             AcceptChangesButton.Size = new Size(164, 31);
@@ -118,7 +118,7 @@
             label3.TabIndex = 30;
             label3.Text = "Description:";
             // 
-            // Form2
+            // editTask
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -132,7 +132,7 @@
             Controls.Add(dateTimePicker1);
             Controls.Add(textBox_id);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Form2";
+            Name = "editTask";
             Text = "Form2";
             Load += Form2_Load;
             ResumeLayout(false);

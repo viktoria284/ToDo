@@ -16,7 +16,6 @@ namespace ToDo
     {
         DataBase database = new DataBase();
 
-
         public login()
         {
             InitializeComponent();
@@ -35,32 +34,23 @@ namespace ToDo
             string Username = textBox_login.Text;
             string Password = textBox_password.Text;
 
-
-            // Обьявим два обьекта класс для работы  с базай данных является частью ADO.NET и предоставляет средства для выполнения
-            // операций с данными, таких как выборка, вставка, обновление и
-            // удаление записей из базы данных.
             SqlDataAdapter adapetr = new SqlDataAdapter();
             DataTable table = new DataTable();
-            //формируется SQL-запрос
+
             string querystring = $"select id_user, login_user,password_user,access from register_2 where login_user = '{Username}' AND password_user = '{Password}'";
-            // SQL-запрос
+
             SqlCommand command = new SqlCommand(querystring, database.GetConnection());
-            // говорим адаптеру какую команду SQL нужно выполнить, чтобы получить данные из базы данных
+
             adapetr.SelectCommand = command;
             adapetr.Fill(table);
-
-
-            //userss = new User(loginUser, passwordUser, Convert.ToInt32(table.Rows[0]["access"]));
-
 
             if (table.Rows.Count >= 1)
             {
                 int accessValue = Convert.ToInt32(table.Rows[0]["access"]);
 
-
                 User US;
 
-                if (accessValue == 1) // Предполагается, что 1 представляет доступ администратора
+                if (accessValue == 1)
                 {
                     US = new Admin();
                 }
@@ -73,10 +63,7 @@ namespace ToDo
 
                 // int t = Convert.ToInt32(table.Rows[0]["access"]);
 
-
                 Main MAIN = new Main(US);
-
-
 
                 this.Hide();
                 MAIN.ShowDialog();
@@ -94,6 +81,11 @@ namespace ToDo
             Sign_up sgn = new Sign_up();
             //this.Hide();
             sgn.ShowDialog();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

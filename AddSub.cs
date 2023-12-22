@@ -17,7 +17,6 @@ namespace ToDo
     public partial class AddSub : Form
     {
         DataBase database = new DataBase();
-        //Main mainInstance = new Main(); //оно надо? у меня было у него нет
 
         public AddSub()
         {
@@ -39,7 +38,7 @@ namespace ToDo
             var notes = textBox5.Text;
 
             // Создаем экземпляр класса Subject
-            Subject subject = new Subject(name, type, teacher, req, !string.IsNullOrEmpty(notes));
+            Subject subject = new Subject(name, type, teacher, req, notes);
 
             // Используем параметризованный SQL-запрос с использованием данных из экземпляра Subject
             var addQuery = "INSERT INTO subjects (subject_name, type_subject, teachers, requirements, notes) " +
@@ -52,7 +51,7 @@ namespace ToDo
                 command.Parameters.AddWithValue("@type", subject.Type);
                 command.Parameters.AddWithValue("@teacher", subject.Teacher);
                 command.Parameters.AddWithValue("@req", subject.Requirements);
-                command.Parameters.AddWithValue("@notes", subject.HasNotes);
+                command.Parameters.AddWithValue("@notes", subject.Notes);
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно создана!!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
