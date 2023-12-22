@@ -45,6 +45,12 @@ namespace ToDo
                 return;
             }
 
+            if (checkUser(login, password))
+            {
+                MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (login.Length < 5 || login.Length > 50)
             {
                 MessageBox.Show("Логин должен содержать от 5 до 50 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -65,12 +71,6 @@ namespace ToDo
 
             if (!CheckPasswordStrength(password))
             {
-                return;
-            }
-
-            if (checkUser(login, password))
-            {
-                MessageBox.Show("Пользователь уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -111,7 +111,7 @@ namespace ToDo
             DataTable table = new DataTable();
 
 
-            string qerystring = $"SELECT login_user,password_user,access from register_2 where login_user = '{loginUser}' and  password_user='{password}'";
+            string qerystring = $"SELECT login_user,password_user,access FROM register_2 WhHERE login_user = '{loginUser}' and  password_user='{password}'";
 
             SqlCommand command = new SqlCommand(qerystring, database.GetConnection());
 

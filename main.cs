@@ -60,6 +60,7 @@ namespace ToDo
                 textBox_task.Visible = true;
                 AddSubjectButton.Visible = true;
                 DeleteSubjectButton.Visible = true;
+                RegNewUser.Visible = true;
             }
             else
             {
@@ -73,6 +74,7 @@ namespace ToDo
                 DeleteSubjectButton.Visible = false;
                 label2.Visible = false;
                 label3.Visible = false;
+                RegNewUser.Visible = false;
             }
 
         }
@@ -517,7 +519,7 @@ namespace ToDo
             reader2.Close();
         }
 
-        private void regforvikiToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RegNewUser_Click(object sender, EventArgs e)
         {
             ClassR.acf = 1;
             Sign_up sig = new Sign_up();
